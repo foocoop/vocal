@@ -159,4 +159,42 @@ function makeLink($content="",$url="",$onclick=""){
   return $str;
 
 }
+
+function get_images( $eventoID, $size = 'thumbnail') {
+  
+  $photos = get_children( array('post_parent' => $eventoID, 'post_status' => 'null', 'post_type' => 'attachment', 'post_mime_type' => 'image', 'order' => 'ASC') );
+  
+  $results = array();
+
+  if ($photos) {
+    foreach ($photos as $photo) {
+      // get the correct image html for the selected size
+      $results[] = wp_get_attachment_image_src($photo->ID, $size);
+    }
+  }
+
+  return $results;
+}
+
+function categoryDropdown()
+{
+  $taxs = get_taxonomies('name'->'disciplinas');
+  $result = "<select>";
+  foreach ($taxs as $tax) {
+    $result.="<option value=".$tax.">".$tax."</option>";
+  }
+  $result.= "</select>";
+  return $result;
+}
+
+function disciplineDropdown()
+{
+  $taxs = get_categories();
+  $result = "<select>";
+  foreach ($taxs as $tax) {
+    $result.="<option value=".$tax.">".$tax."</option>";
+  }
+  $result.= "</select>";
+  return $result;
+}
 ?>
