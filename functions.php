@@ -176,9 +176,9 @@ function get_images( $eventoID, $size = 'thumbnail') {
   return $results;
 }
 
-function categoryDropdown()
+function disciplineDropdown()
 {
-  $taxs = get_taxonomies('name'->'disciplinas');
+  $taxs = get_categories();
   $result = "<select>";
   foreach ($taxs as $tax) {
     $result.="<option value=".$tax.">".$tax."</option>";
@@ -187,11 +187,11 @@ function categoryDropdown()
   return $result;
 }
 
-function disciplineDropdown()
+function categoryDropdown()
 {
-  $taxs = get_categories();
+  $taxonomias = get_taxonomies(array('name'=>'disciplinas'));
   $result = "<select>";
-  foreach ($taxs as $tax) {
+  foreach ($taxonomias as $tax) {
     $result.="<option value=".$tax.">".$tax."</option>";
   }
   $result.= "</select>";
