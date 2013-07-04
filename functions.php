@@ -197,4 +197,34 @@ function categoryDropdown()
   $result.= "</select>";
   return $result;
 }
+
+function disciplinas_init() {
+  // create a new taxonomy
+  register_taxonomy(
+    'disciplinas',
+    'post',
+    array(
+      'label' => __( 'Disciplinas' ),
+      'rewrite' => array( 'slug' => 'disciplina' )
+    )
+  );
+}
+add_action( 'init', 'disciplinas_init' );
+
+add_action( 'init', 'create_post_type' );
+function create_post_type() {
+  register_post_type( 'proyecto',
+    array(
+      'labels' => array(
+        'name' => __( 'Proyectos' ),
+        'singular_name' => __( 'Proyecto' )
+      ),
+    'public' => true,
+    'has_archive' => true,
+    )
+  );
+  add_post_type_support('proyecto',array('title','editor','excerpt','thumbnail','custom-fields'));
+}
+
+add_theme_support( 'post-thumbnails' );
 ?>
