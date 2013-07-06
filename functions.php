@@ -1,230 +1,89 @@
 <?php
-/*
-Author: Foostoodio
-*/
 
-function makeDiv($id="",$class="", $content="", $link=""){
-	$str = '<div';
-		if($id!="") { 		$str .= ' id="'.$id.'"';	}
-		if($class!="") { 	$str .= ' class="'.$class.'"'; }
-
-	$str .= '>';
-
-		if($link!="") { 	$str .= '<a href="'.$link.'">';	}
-		if($content!="") { 	$str .= $content;	}
-		if($link!="") {		$str .= '</a>';	}
-	
-  $str .= '</div>';
-	
-	return $str;
-}
+require_once("cpt/proyecto.php");
+require_once("utilidades/funcionesHTML.php");
 
 
 
-function makeUl($id="",$class="", $content="", $link=""){
-  $str = '<ul';
-    if($id!="") {     $str .= ' id="'.$id.'"';  }
-    if($class!="") {  $str .= ' class="'.$class.'"'; }
-
-  $str .= '>';
-
-    if($link!="") {   $str .= '<a href="'.$link.'">'; }
-    if($content!="") {  $str .= $content; }
-    if($link!="") {   $str .= '</a>'; }
-  $str .= '</ul>';
-  
-  return $str;
-}
-      
 
 
-function makeLi($id="",$class="", $content="", $link=""){
-  $str = '<li';
-    if($id!="") {     $str .= ' id="'.$id.'"';  }
-    if($class!="") {  $str .= ' class="'.$class.'"'; }
-
-  $str .= '>';
-
-    if($link!="") {   $str .= '<a href="'.$link.'">'; }
-    if($content!="") {  $str .= $content; }
-    if($link!="") {   $str .= '</a>'; }
-  $str .= '</li>';
-  
-  return $str;
-}
-      
 
 
-function makeImg($src=""){
-	if($src!="") {
-  		$str = '<img src="'.$src.'">';
+
+
+
+
+
+
+function remove_menus () {
+global $menu;
+	$restricted = array(__('Dashboard'), __('Posts'), __('Media'), __('Links'),/*__('Pages'), __('Appearance'),*/ __('Tools'),/* __('Users'), __('Settings'),*/ __('Comments'), __('Plugins'));
+	end ($menu);
+	while (prev($menu)){
+		$value = explode(' ',$menu[key($menu)][0]);
+		if(in_array($value[0] != NULL?$value[0]:"" , $restricted)){unset($menu[key($menu)]);}
 	}
-
-	return $str;
 }
-
-function startDiv($id="",$class=""){
-  $str = '<div';
-    if($id!="") {     $str .= ' id="'.$id.'"';  }
-    if($class!="") {  $str .= ' class="'.$class.'"'; }
-
-  $str .= '>';
-  
-  return $str;
-}
+add_action('admin_menu', 'remove_menus');
 
 
-
-function closeDiv(){
-  $str .= '</div>';
-  
-  return $str;
-}
-
-
-function makeTextDiv($content="", $link="", $align="justify"){
 	
-		if($link!="") { 	$str .= '<a href="'.$link.'">';	}
-		if($content!="") { 	
-			$str .= '<div class="text_table"><div class="text_container"><div class="vcenter_text '.$align.'">';
-				$str .= $content;
-			$str .= '</div></div></div>';
-		}
-		if($link!="") {		$str .= '</a>';	}
+function vocal_main_nav() {
+	echo foo_div("menu-grande","vocal_menu hide-for-small row",
+		foo_div( "", "two columns",	'<label><input type="checkbox" value="Todos">Todos los proyectos</label>' ) .
+		foo_div( "", "two columns",	taxonomyDropdown('disciplina') ) .
+		foo_div( "", "two columns",	taxonomyDropdown('category') ) .
+		foo_div( "", "two columns",	'' ) .
+		foo_div( "imagenes", "two columns",
+			'Imágenes: ' .
+			'<input type="button" value="S" onclick="cargar_posts()">' .
+			'<input type="button" value="M" onclick="cargar_posts()">' .
+			'<input type="button" value="L" onclick="cargar_posts()">' 
+		) .		
+		foo_div( "", "two columns",	'<input type="button" value="Go fullscreen" onclick="toggleFullScreen()">' )
+	);
+}
+
+function vocal_mobile_nav() {	
+	echo foo_div("menu-grande","vocal_menu show-for-small row",
+		foo_div( "", "two columns",	taxonomyDropdown('disciplina') ) .
+		foo_div( "", "two columns",	taxonomyDropdown('category') ) .
+		foo_div( "", "two columns",	'<input type="button" value="Go fullscreen" onclick="toggleFullScreen()">' )
+	);
+}
+
+
+
+
+function taxonomyDropdown( $tax_name )
+{
 	
-	return $str;
+	if( qtrans_getLanguage()=='es' ) {
+		$plural = array( 'category'=>"Categorías",  'disciplina'=>"Disciplinas" );
+		$todas = "Todas las " . $plural[ $tax_name ];
+	}
+	else if( qtrans_getLanguage()=='en' ) {
+		$plural = array( 'category'=>"Categories",  'disciplina'=>"Disciplines" );
+		$todas = "All " . $plural[ $tax_name ];
+	}
+	
+	$taxs = get_terms( $tax_name, array( "hide_empty" => 0 ) );
+	$result = '<select id="'.$tax_name.'">';
+	
+	$result .= '<option value="'.$todas.'">'.$todas."</option>";
+	foreach ($taxs as $tax) {
+		$nombre = $tax -> name;
+		$result .= "<option value=".$nombre.">".$nombre."</option>";
+	}
+	$result.= "</select>";
+	return $result;
 }
 
 
-function makeTitleDiv($content="", $link="", $align="justify"){
-  
-    if($link!="") {   $str .= '<a href="'.$link.'">'; }
-    if($content!="") {  
-      $str .= makeDiv("","div_titulo",
-                makeDiv("","text_table",
-                  makeDiv("","text_container",
-                      makeDiv("","vcenter_text ".$align,$content )
-                  )
-                )
-              );
-    }
-    if($link!="") {   $str .= '</a>'; }
-  
-  return $str;
-}
-
-
-function makeBannerDiv($content="", $link="", $align="justify"){
-  
-    if($link!="") {   $str .= '<a href="'.$link.'">'; }
-    if($content!="") {  
-      $str .= makeDiv("","div_banner",
-                makeDiv("","text_table",
-                  makeDiv("","text_container",
-                      makeDiv("","vcenter_text ".$align,$content )
-                  )
-                )
-              );
-    }
-    if($link!="") {   $str .= '</a>'; }
-  
-  return $str;
-}
-
-function makeScrollDiv($content){
-  $str .= '<div class="scroll_hide"><div class="scroller">';
-    $str .= $content;
-  $str .= '</div></div>';
-  
-  return $str;
-}
-
-
-function makeLink($content="",$url="",$onclick=""){
-	if($url=="") $url = "#";
-  $str = "";
-  $str = '<a href="'.$url.'"';
-
-
-  if($onclick!="") {    
-    $str .= ' onclick="'.$onclick.'"';
-  }
-
-  $str .= '>';
-
-  $str .= $content;
-
-  $str .= '</a>';
-
-  return $str;
-
-}
-
-function get_images( $eventoID, $size = 'thumbnail') {
-  
-  $photos = get_children( array('post_parent' => $eventoID, 'post_status' => 'null', 'post_type' => 'attachment', 'post_mime_type' => 'image', 'order' => 'ASC') );
-  
-  $results = array();
-
-  if ($photos) {
-    foreach ($photos as $photo) {
-      // get the correct image html for the selected size
-      $results[] = wp_get_attachment_image_src($photo->ID, $size);
-    }
-  }
-
-  return $results;
-}
-
-function disciplineDropdown()
-{
-  $taxs = get_categories();
-  $result = "<select>";
-  foreach ($taxs as $tax) {
-    $result.="<option value=".$tax.">".$tax."</option>";
-  }
-  $result.= "</select>";
-  return $result;
-}
-
-function categoryDropdown()
-{
-  $taxonomias = get_taxonomies(array('name'=>'disciplinas'));
-  $result = "<select>";
-  foreach ($taxonomias as $tax) {
-    $result.="<option value=".$tax.">".$tax."</option>";
-  }
-  $result.= "</select>";
-  return $result;
-}
-
-function disciplinas_init() {
-  // create a new taxonomy
-  register_taxonomy(
-    'disciplinas',
-    'post',
-    array(
-      'label' => __( 'Disciplinas' ),
-      'rewrite' => array( 'slug' => 'disciplina' )
-    )
-  );
-}
-add_action( 'init', 'disciplinas_init' );
-
-add_action( 'init', 'create_post_type' );
-function create_post_type() {
-  register_post_type( 'proyecto',
-    array(
-      'labels' => array(
-        'name' => __( 'Proyectos' ),
-        'singular_name' => __( 'Proyecto' )
-      ),
-    'public' => true,
-    'has_archive' => true,
-    )
-  );
-  add_post_type_support('proyecto',array('title','editor','excerpt','thumbnail','custom-fields'));
-}
 
 add_theme_support( 'post-thumbnails' );
+
+
+
+
 ?>
