@@ -28,7 +28,7 @@
 	</body>
 
 
-	<script type="text/javascript">
+<script type="text/javascript">
 
 	function toggleFullScreen() {
 		if ((document.fullScreenElement && document.fullScreenElement !== null) ||    
@@ -93,7 +93,7 @@
 		else if(width>=500&&width<750)  
 			newClass = 'six';
 		else if(width<500)  
-			newClass = 'twelve';
+			newClass = 'large-12';
 
 //~ alert(width);
 
@@ -109,6 +109,6 @@
 		resizeTimer = setTimeout( setupGrid, 50);
 	});
 
-	</script>
+</script>
 			
 </html>
