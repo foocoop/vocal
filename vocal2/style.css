@@ -1,0 +1,447 @@
+/*
+Theme Name: Vocal 4 
+Theme URI: http://fwp.drewsymo.com
+Author: Drew Morris
+Author URI: http://drewsymo.com
+Version: 4.0
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: foundation
+Description: Foundation for WordPress, a Responsive Starter Theme.
+Tags: two-columns
+*/
+
+/* Artfully masterminded by ZURB  */
+
+/* -------------------------------------------------- 
+   Table of Contents
+-----------------------------------------------------
+:: Images
+:: Posts
+:: Typography
+:: Header
+:: Shared Styles
+:: Page Name 1
+:: Page Name 2
+*/
+
+
+@import url("utilidades/foo.css");
+
+
+html, body { height: 100%; z-index:1; }
+
+a{ color: #18E1AF }
+a:hover{ color: #0DE19F }
+/* -----------------------------------------
+   Images
+----------------------------------------- */
+
+.widget img {
+    max-width: 97.5%; /* Fluid images for posts, comments, and widgets */
+}
+img[class*="align"],
+img[class*="wp-image-"] {
+    height: auto; /* Make sure images with WordPress-added height and width >attributes are scaled correctly */
+}
+img.size-full {
+    max-width: 97.5%;
+    width: auto; /* Prevent stretching of full-size images with height and >>width attributes in IE8 */
+}
+
+.wp-caption { max-width: 100%; }
+
+/* -----------------------------------------
+   Posts
+----------------------------------------- */
+
+.author-box h5 {margin-top:0px;}
+.author-box .author_gravatar {margin-right:10px;}
+.author-box p {font-size:14px; font-size:1.4em;}
+
+article .th {margin-bottom:10px; margin-bottom:1em;}
+
+.alignleft {float:left;}
+.alignright {float:right;}
+.aligncenter {margin:0 auto;text-align:center;}
+
+/* -----------------------------------------
+   Typography
+----------------------------------------- */
+
+body,h1,h2,h3,h4,h5,h6,p {font-family: 'Open Sans', sans-serif;}
+h1,h2,h3,h4,h5,h6,a:link {font-weight:300;}
+
+.site-title .subheader {margin-bottom:0;}
+
+/* -----------------------------------------
+   Header
+----------------------------------------- */
+
+.site-header {border-bottom:1px solid #ddd;padding:1.5rem 0 1rem 0;margin:-1.875em 0 1.875em 0;}
+.sidebar ul li {list-style:none;}
+.top-bar-section ul li>a {border-left:1px solid #333;border-right:none;}
+
+/* -----------------------------------------
+   Shared Styles
+----------------------------------------- */
+.wp-caption-text {text-align: center;}
+.sticky { }
+.gallery-caption { }
+.bypostauthor{ }
+.site-content .gallery {
+  margin-bottom: 1.5em;
+}
+.gallery-caption {
+}
+.site-content .gallery a img {
+  border: none;
+  height: auto;
+  max-width: 90%;
+}
+.site-content .gallery dd {
+  margin: 0;
+}
+.site-content .gallery-columns-4 .gallery-item {
+}
+.site-content .gallery-columns-4 .gallery-item img {
+}
+
+embed,
+iframe,
+object {
+  max-width: 100%;
+}
+/* -----------------------------------------
+   Page Name 1
+----------------------------------------- */
+
+/* -----------------------------------------
+   Page Name 2
+----------------------------------------- */
+
+
+
+
+
+
+html,body{
+	min-height:100%;
+/*
+	width:100%;
+	display:block;
+*/
+}
+
+body > .row {
+    margin: 0 auto;
+    width:100%;
+    max-width: 100% !important;
+}
+
+
+@font-face {
+    font-family: 'alte_haas_groteskregular';
+    src: url('fonts/altehaasgroteskregular-webfont.eot');
+    src: url('fonts/altehaasgroteskregular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/altehaasgroteskregular-webfont.woff') format('woff'),
+         url('fonts/altehaasgroteskregular-webfont.ttf') format('truetype'),
+         url('fonts/altehaasgroteskregular-webfont.svg#alte_haas_groteskregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+h1,h2,h3,h4,h5{
+	font-family: 'alte_haas_groteskregular';
+}
+
+
+p {
+		font-family:'Lucida Console', Monaco, monospace
+}
+
+#principal	 {
+	margin:0 15px;
+}
+
+#top-header{
+	margin:20px 0;
+}
+.column, .columns {
+	padding:4px;
+	
+}
+#top-header .column,  #top-header .columns{
+	padding:0;
+	height:100%;
+	display:inline-block;
+}
+
+/*
+
+#menu-grande{
+	border:1px solid #0fa;
+}
+#menu-chico{
+	border:1px solid #fa0;
+}
+*/
+
+#menu-chico{
+	color:#fa0;
+}
+
+#menu-chico{
+	color:#fa0;
+}
+
+
+
+#menu_proyectos a {
+	color:#444;
+	text-transform: uppercase;
+	font-size:11px;
+}
+
+#menu_proyectos a:hover {
+	color:#222;
+}
+
+#menu_proyectos li {
+	padding: 5px 10px;
+	
+}
+
+#menu_proyectos li:hover {
+	background-color:#eee;
+
+
+}
+
+
+
+#content,.content{
+	height: 100%;
+}
+
+
+
+
+
+
+
+
+
+/*****************
+ * 	POST SINGLE
+ ****************/
+
+.post .titulo {
+	text-transform:uppercase;
+	font-size:14px;
+	font-weight:bold;
+}
+
+.post .texto {
+	display:none;
+}
+
+.post .links{
+
+	border-top:1px solid #aaa;
+	margin:15px 0;
+	padding:15px 0;
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+.orbit-wrapper{
+	position:absolute;
+	width:100%;
+	height:100%;
+	margin-left:0;
+	margin-right:0;
+}
+
+
+
+article{
+/*
+	border:1px solid #aaa;
+*/
+}
+
+
+
+img {
+	min-width:100%;
+}
+
+li{
+	list-style:none;
+}
+
+
+
+#imagenes input {
+	width:auto;
+	padding: 3px
+/*
+	margin: 0 5px
+*/
+}
+
+
+/*
+label input { padding: 0;}
+*/
+
+#proyectos article{
+
+}
+
+
+#proyectos article header {
+	visibility:hidden;
+	position:absolute;
+	height:100%;
+}
+
+#proyectos article .content {
+	
+}
+
+#proyectos article:hover > header {
+	visibility:visible;
+}
+#proyectos article:hover > .content {
+	visibility:hidden;
+}
+
+
+footer{
+	position: absolute;
+	bottom:0;
+	top:100%;
+	width:100%;
+}
+
+
+
+ 
+ 
+ 
+ 
+
+/***********************************
+ *			formas	
+ * ********************************/
+ 
+ 
+ 
+input {
+	color: #18E1AF;
+	border:0;
+}
+ 
+ 
+
+select {
+	border:1px solid black;
+}
+
+label,
+input,
+select {
+	font-size:11px;
+	width:auto;
+	background-color:#fff !important;
+	text-transform: uppercase;
+	line-height:100%;
+	height:100%;
+	width:100%;
+	margin:0;
+	padding: 4px 0;
+}
+
+/***********************************
+ * 			PORTADA
+ **********************************/  
+
+.fullscreen {
+	position:absolute;
+	left:0;
+	top:0;
+	height: 100%;
+	width: 100%;
+	display:block;
+	z-index:-1;
+}
+.fullscreen img {
+	height: 100%;
+/*
+	width: 100%;
+*/
+	display:block;
+}
+
+.portada .content {
+	display:none;
+}
+
+#texto_portada .over_curtain{
+	padding:3% !important;
+}
+#texto_portada{
+	min-height: 33%;
+	height: 33%;
+	text-transform:uppercase;
+}
+
+#texto_portada a {
+	font-weight:bold;
+	padding:5px 2px;
+	width: auto
+}
+#texto_portada #entrar  {
+	background-color:#fff;
+	width:25%;
+	padding:5px;
+}
+#texto_portada #entrar .flecha {
+	min-width:25px;
+	width:25px;
+/*
+	max-width:20px;
+*/
+	height:auto;
+	padding:0 3px;
+	float:left;
+}
+
+
+
+
+/*******
+ * 		OPCIONES FOO
+ * 
+ * ****/
+
+
+.curtain {		
+/*
+	opacity:1;
+*/
+	background-color:#FFF;
+}
