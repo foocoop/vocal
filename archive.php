@@ -27,8 +27,8 @@
 		
 
 		$str .= foo_article( array(
-			'class' => 'proyecto two columns',
-			'header'=> foo_vcenter( foo_h( $titulo, 5) ),
+			'class' => 'proyecto large-2 small-6 columns',
+			'header'=> foo_link(foo_vcenter( foo_h( $titulo, 5) ),$link),
 			'content'=> $img
 		) );
 					
@@ -40,9 +40,9 @@
 		
 		
 		
-		echo foo_div("menu_proyectos","two columns show-for-small",foo_dropdown( $post->id, "opcion", $proyectos));
-		echo foo_div("menu_proyectos","two columns hide-for-small", $lis );
-		echo foo_div("proyectos","ten columns",$str);
+		echo foo_div("menu_proyectos","small-6 large-2 columns show-for-small",foo_dropdown( $post->id, "opcion", $proyectos));
+		echo foo_div("menu_proyectos","small-6 large-2 columns hide-for-small", $lis );
+		echo foo_div("proyectos","large-10 columns",$str);
 		
 		?>	
 	

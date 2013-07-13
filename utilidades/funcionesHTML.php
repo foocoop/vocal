@@ -18,7 +18,7 @@ function foo_div($id="",$class="", $content="", $link=""){
 
 	$str .= '>';
 
-		if($link!="") { 	$str .= '<a href="'.$link.'">';	}
+		if($link!="") { 		$str .= '<a href="'.$link.'">';	}
 		if($content!="") { 	$str .= $content;	}
 		if($link!="") {		$str .= '</a>';	}
 	
@@ -98,12 +98,12 @@ function foo_featImg( $size = 'full', $id = "" ){
 }
 
 
-function foo_kimgs( $eventoID, $size = 'thumbnail', $addFeatured = 'false') {
+function foo_imgs( $eventoID, $size = 'thumbnail', $addFeatured = 'false') {
   $photos = get_children( array('post_parent' => $eventoID, 'post_status' => 'null', 'post_type' => 'attachment', 'post_mime_type' => 'image', 'order' => 'ASC') ); 
   $results = array();
   
   if($addFeatured)
-	$results[]  = featImg();
+	$results[]  = foo_featImg();
 	
   if ($photos) {
     foreach ($photos as $photo) {
@@ -215,8 +215,8 @@ function foo_link($content="",$url="",$onclick=""){
 		$str = "";
 		$str = '<a href="'.$url.'"';
 		if($onclick!="") {    
-		$str .= ' onclick="'.$onclick.'"';
-	}
+			$str .= ' onclick="'.$onclick.'"';
+		}
 
 	$str .= '>';
 	$str .= $content;
@@ -248,14 +248,34 @@ function foo_h($text="",$number=""){
 
 
 
+
+
+/***********************************************
+ * 				Utilidades gráficas
+ **********************************************/
+
+
+function foo_curtain( $behind, $over ) {
+	return foo_div( "", "curtain_holder",
+				foo_div("","behind_curtain",$behind)
+				. foo_div("","curtain")
+				. foo_div("","over_curtain",$over )
+			);
+}
+
+
 /***********************************************
  * 				Contenido Wordpress
  **********************************************/
 
-function filter($title="",$filter="filter"){
-  return apply_filters("the_".$filter,$title);
+function foo_filter($content="",$filter="filter"){
+  return apply_filters("the_".$filter,$content);
 }
 
+function foo_strip( $content, $tag ) {
+	$content = preg_replace('/<'.$tag.'[^>]+./','', $content);
+	return $content;
+}
 
 function foo_article( $args ) {
 	

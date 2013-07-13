@@ -47,8 +47,7 @@ function proyecto() {
 			'hierarchical' => false,
 			/* the next one is important, it tells what's enabled in the post editor */
 			'supports' => array( 'title', 'editor', 'author', 'thumbnail', 'excerpt', 'sticky'),
-			'has_archive' => true
-	 	) /* end of options */
+			'has_archive' => true	 	) /* end of options */
 	); /* end of register Proyecto */
 	
 	/* this ads your post categories to your Proyecto type */
@@ -61,6 +60,12 @@ function proyecto() {
 	// adding the function to the Wordpress init
 	add_action( 'init', 'proyecto');
 	
+	
+	//~ function add_links_metabox() {
+	    //~ add_meta_box('proyecto_link', 'Link Externo', 'proyecto_link', 'proyecto');
+	//~ }
+//~ 
+
 	/*
 	for more information on taxonomies, go here:
 	http://codex.wordpress.org/Function_Reference/register_taxonomy

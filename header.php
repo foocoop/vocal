@@ -1,102 +1,61 @@
-<!doctype html>  
-
-<!--[if IEMobile 7 ]> <html <?php language_attributes(); ?>class="no-js iem7"> <![endif]-->
-<!--[if lt IE 7 ]> <html <?php language_attributes(); ?> class="no-js ie6"> <![endif]-->
-<!--[if IE 7 ]>    <html <?php language_attributes(); ?> class="no-js ie7"> <![endif]-->
-<!--[if IE 8 ]>    <html <?php language_attributes(); ?> class="no-js ie8"> <![endif]-->
-<!--[if (gte IE 9)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html <?php language_attributes(); ?> class="no-js"><!--<![endif]-->
-	
-	<head>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-		
-		<title><?php wp_title('', true, 'right'); ?></title>
-				
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		
-		<!-- icons & favicons -->
-		<!-- For iPhone 4 -->
-		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="<?php echo get_template_directory_uri(); ?>/library/images/icons/h/apple-touch-icon.png">
-		<!-- For iPad 1-->
-		<link rel="apple-touch-icon-precomposed" sizes="72x72" href="<?php echo get_template_directory_uri(); ?>/library/images/icons/m/apple-touch-icon.png">
-		<!-- For iPhone 3G, iPod Touch and Android -->
-		<link rel="apple-touch-icon-precomposed" href="<?php echo get_template_directory_uri(); ?>/library/images/icons/l/apple-touch-icon-precomposed.png">
-		<!-- For Nokia -->
-		<link rel="shortcut icon" href="<?php echo get_template_directory_uri(); ?>/library/images/icons/l/apple-touch-icon.png">
-		<!-- For everything else -->
-		<link rel="shortcut icon" href="<?php echo get_template_directory_uri(); ?>/favicon.ico">
-				
-		<!-- media-queries.js (fallback) -->
-		<!--[if lt IE 9]>
-			<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>			
-		<![endif]-->
-
-		<!-- html5.js -->
-		<!--[if lt IE 9]>
-			<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-		<![endif]-->
-		
-		
-		<link rel="stylesheet" href="css/orbit.css">
-		
-		
-  		<link rel="pingback" href="<?php bloginfo('pingback_url'); ?>">
-		
-		<!-- wordpress head functions -->
-		<?php wp_head(); ?>
-		<!-- end of wordpress head -->
-
-		<link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo( 'stylesheet_url' ); ?>" />
-
-		
-		<!-- bring in theme options styles -->
-		<?php 
-		
-		
-		?>
-				
-	</head>
-	
-	<body <?php body_class(); ?>>
-
-		<div id="principal" class="row container">
-			<div class="twelve columns">
-				<header role="banner" id="top-header">
-					
-<!--
-					<div class="siteinfo hidden">
-						<h1><a class="brand" id="logo" href="<?php echo get_bloginfo('url'); ?>"><?php bloginfo('name'); ?></a></h1>
-						
-					</div>
--->
-			
-					<?php vocal_main_nav(); ?>
-
-<!--
-					<div class="show-for-small menu-action">
-				  	    <a href="#sidebar" id="mobile-nav-button" class="sidebar-button small secondary button">
-							<svg xml:space="preserve" enable-background="new 0 0 48 48" viewBox="0 0 48 48" height="18px" width="18px" y="0px" x="0px" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" id="Layer_1" version="1.1">
-								<line y2="39.439" x2="24" y1="8.907" x1="0" stroke-miterlimit="10" stroke-width="8" stroke="#000000" fill="none"/>
-								<line y2="39.439" x2="24" y1="8.907" x1="48" stroke-miterlimit="10" stroke-width="8" stroke="#000000" fill="none"/>
-								Menu
-							</svg>
-						</a>
-					</div>
--->
-
-					<?php vocal_mobile_nav(); ?>
-
-				</header> <!-- end header -->
-			</div>
-
 <?php
-$debug = 0; 
-if($debug) {
-global $template; 
-
-echo foo_div("","debug",$template);
-echo foo_div("","debug",themeDir());
-
-
-}
+/**
+ * Header
+ *
+ * Setup the header for our theme
+ *
+ * @package WordPress
+ * @subpackage Foundation, for WordPress
+ * @since Foundation, for WordPress 4.0
+ */
 ?>
+
+<!DOCTYPE html>
+<!--[if IE 8]> 				 <html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" <?php language_attributes(); ?>> <!--<![endif]-->
+
+<head>
+<meta charset="<?php bloginfo( 'charset' ); ?>" />
+
+<link rel="profile" href="http://gmpg.org/xfn/11" />
+<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
+
+<!-- Set the viewport width to device width for mobile -->
+<meta name="viewport" content="width=device-width" />
+
+<title><?php wp_title(); ?></title>
+
+<?php wp_enqueue_script("jquery"); ?>
+
+<?php wp_head(); ?>
+
+</head>
+
+<body <?php body_class(); ?>>
+
+<!--
+	<nav class="top-bar">
+		<section class="top-bar-section">
+			<?php
+			 //~ wp_nav_menu( array( 'theme_location' => 'header-menu', 'menu_class' => 'left', 'container' => '', 'fallback_cb' => 'foundation_page_menu', 'walker' => new foundation_navigation() ) ); ?>
+		</section>
+	</nav>
+-->
+
+	<?php $header =  get_header_textcolor();
+	if( !is_front_page() )
+		vocal_main_nav();
+	else
+		vocal_portada_nav();
+	if ( $header !== "blank" ) : ?>
+	<header class="site-header" <?php $header_image = get_header_image(); if ( ! empty( $header_image ) ) : ?> style="background:url('<?php echo esc_url( $header_image ); ?>');" <?php endif; ?>>
+		<div class="row">
+			<div class="large-12 columns">
+				<h2><a style="color:#<?php header_textcolor(); ?>;" href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><?php bloginfo( 'description' ); ?></a></h2>
+			</div>
+		</div>
+	</header>
+	<?php endif; ?>
+
+<!-- Begin Page -->
+<div id="content" class="row">

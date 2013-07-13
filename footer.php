@@ -1,31 +1,29 @@
-			<footer role="contentinfo">
-			
-					<div class="twelve columns">
+<?php
+/**
+ * Footer
+ *
+ * Displays content shown in the footer section
+ *
+ * @package WordPress
+ * @subpackage Foundation, for WordPress
+ * @since Foundation, for WordPress 4.0
+ */
+?>
 
-						<div class="row">
+</div> <!-- #content -->
 
-							<nav class="ten columns clearfix">
-								<?php bones_footer_links(); ?>
-							</nav>
+<!-- End Page -->
 
-							<p class="attribution two columns"><a href="http://google.com" id="link" title="VOCAL">VOCAL</a></p>
+<!-- Footer -->
+<footer class="row">
 
-						</div>
 
-					</div>
-					
-			</footer> <!-- end footer -->
-		
-		</div> <!-- end #container -->
-		
-		<!--[if lt IE 7 ]>
-  			<script src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.3/CFInstall.min.js"></script>
-  			<script>window.attachEvent('onload',function(){CFInstall.check({mode:'overlay'})})</script>
-		<![endif]-->
-		
-		<?php wp_footer(); // js scripts are inserted using this function ?>
+</footer>
+<!-- End Footer -->
 
-	</body>
+<?php wp_footer(); ?>
+
+</body>
 
 
 <script type="text/javascript">
@@ -51,60 +49,56 @@
 		}  
 	} 
 
-	$j = jQuery.noConflict();
+	//~ $ = jQuery.noConflict();
 	
-	
-	$j(document).ready(function(){
+	$(document).ready(function(){	
 			setupGrid();
 	});
-	
+	//~ 
 	
 	function clearClasses(object){
 		
-		object.removeClass('one');
-		object.removeClass('two');
-		object.removeClass('three');
-		object.removeClass('four');
-		object.removeClass('six');
-		object.removeClass('twelve');
+		object.removeClass('large-1');
+		object.removeClass('large-2');
+		object.removeClass('large-3');
+		object.removeClass('large-4');
+		object.removeClass('large-6');
+		object.removeClass('large-12');
 	}
 		
 	function setupGrid() {
-		var width = $j(window).width();
+		var width = $(window).width();
 			//~ alert(width);	
 			
 		var new_width = width*0.97;
-		var principal = $j('#principal').width( new_width );
+		var principal = $('#principal').width( new_width );
 		
 		principal.children().width(new_width);
-		var proyectos = $j('#proyectos .proyecto');
+		var proyectos = $('#proyectos .proyecto');
 		var newClass;
 		clearClasses(proyectos);
 //~ 
 //~ 
 		if(width>=1200)
-			newClass = 'one';
+			newClass = 'large-1';
 		else if(width>1050&&width<1200)  
-			newClass = 'two';
+			newClass = 'large-2';
 		else if(width>900&&width<1050)  
-			newClass = 'three';
+			newClass = 'large-3';
 		else if(width>750&&width<=900)  
-			newClass = 'four';			
-		else if(width>=500&&width<750)  
-			newClass = 'six';
-		else if(width<500)  
+			newClass = 'large-4';			
+		else if(width>=600&&width<750)  
+			newClass = 'large-6';
+		else if(width<600)  
 			newClass = 'large-12';
-
-//~ alert(width);
-
-			//~ 
+			
 		proyectos.addClass(newClass);
-		//~ 
+		
 	};
 
 	var resizeTimer;
 	
-	$j(window).resize(function() {
+	$(window).resize(function() {
 		clearTimeout(resizeTimer);
 		resizeTimer = setTimeout( setupGrid, 50);
 	});
