@@ -355,6 +355,20 @@ input {
 	border:0;
 }
  
+.button{
+background:none;
+background-color:#fff !important;
+color:#000;
+}
+
+.button img {
+	min-width:20px;
+	height:25px;
+	margin:2px;
+}
+.button:hover{
+color:#343434;
+}
  
 
 select {
@@ -432,6 +446,11 @@ select {
 
 
 
+
+.archive .large-1 {
+	margin: 0;
+	padding:2px;
+}
 
 /*******
  * 		OPCIONES FOO

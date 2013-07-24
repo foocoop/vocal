@@ -17,6 +17,8 @@
 <head>
 <meta charset="<?php bloginfo( 'charset' ); ?>" />
 
+
+
 <link rel="profile" href="http://gmpg.org/xfn/11" />
 <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
 
@@ -31,31 +33,33 @@
 
 </head>
 
-<body <?php body_class(); ?>>
-
 <!--
-	<nav class="top-bar">
-		<section class="top-bar-section">
-			<?php
-			 //~ wp_nav_menu( array( 'theme_location' => 'header-menu', 'menu_class' => 'left', 'container' => '', 'fallback_cb' => 'foundation_page_menu', 'walker' => new foundation_navigation() ) ); ?>
-		</section>
-	</nav>
 -->
 
-	<?php $header =  get_header_textcolor();
+<script language="javascript" src="<?php echo get_stylesheet_directory_uri(); ?>/scripts/jquery-easy-drop-down/jquery.dropdown.js" type="text/javascript"></script>
+
+<body <?php body_class(); ?>>
+
+	<?php 
 	if( !is_front_page() )
 		vocal_main_nav();
 	else
 		vocal_portada_nav();
 	if ( $header !== "blank" ) : ?>
-	<header class="site-header" <?php $header_image = get_header_image(); if ( ! empty( $header_image ) ) : ?> style="background:url('<?php echo esc_url( $header_image ); ?>');" <?php endif; ?>>
-		<div class="row">
-			<div class="large-12 columns">
-				<h2><a style="color:#<?php header_textcolor(); ?>;" href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><?php bloginfo( 'description' ); ?></a></h2>
-			</div>
-		</div>
-	</header>
+
 	<?php endif; ?>
 
 <!-- Begin Page -->
 <div id="content" class="row">
+
+
+
+<?php
+
+    $imgDir = get_stylesheet_directory_uri()."/img/";
+    $ajaxLoader = foo_div("ajax-loader","",foo_img($imgDir."ajax-loader.gif"));
+
+	echo foo_div("url","hidden",get_site_url());
+	echo foo_div("ajax-loader","hidden",$ajaxLoader);
+
+?>

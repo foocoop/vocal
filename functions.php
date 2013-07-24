@@ -68,9 +68,10 @@ function foundation_assets() {
 		 * jQuery will be used as a fallback if ZeptoJS is not compatible
 		 * @see foundation_compatibility & http://foundation.zurb.com/docs/javascript.html
 		 */
-		wp_deregister_script('jquery');
+		//~ wp_deregister_script('jquery');
 
 		// Load JavaScripts
+		wp_enqueue_script( 'jquery'); //, get_template_directory_uri() . '/js/foundation.min.js', null, '4.0', true );
 		wp_enqueue_script( 'foundation', get_template_directory_uri() . '/js/foundation.min.js', null, '4.0', true );
 		wp_enqueue_script( 'modernizr', get_template_directory_uri().'/js/vendor/custom.modernizr.js', null, '2.1.0');
 		if ( is_singular() ) wp_enqueue_script( "comment-reply" );
@@ -99,7 +100,9 @@ endif;
 if ( ! function_exists( 'foundation_js_init' ) ) :
 
 function foundation_js_init () {
-    echo '<script>$(document).foundation();</script>';
+    //~ echo '<script>$(document).foundation();</script>';
+    echo '<script>jQuery(document).foundation();</script>';
+
 }
 
 add_action('wp_footer', 'foundation_js_init', 50);
@@ -543,15 +546,24 @@ function taxonomyDropdown( $tax_name )
 	}
 	
 	$taxs = get_terms( $tax_name, array( "hide_empty" => 0 ) );
-	$result = '<select id="'.$tax_name.'">';
+	//~ $result = '<select id="'.$tax_name.'">';
 	
-	$result .= '<option value="'.$todas.'">'.$todas."</option>";
+	$opciones .= foo_li( "", "checkbox", '<input type="checkbox" name="'.$todas.'">'.$todas);
 	foreach ($taxs as $tax) {
 		$nombre = $tax -> name;
-		$result .= "<option value=".$nombre.">".$nombre."</option>";
+		$opciones .=  foo_li( "", "checkbox", '<input type="checkbox" name="'.$nombre.'">'.$nombre);
 	}
-	$result.= "</select>";
-	return $result;
+	//~ $opciones.= "</select>";
+	
+	
+	$contenido = foo_div("","dropdown-panel",$opciones);
+	
+	$titulo .= '<a class="dropdown-button button">' . $plural[ $tax_name ] . foo_img( themeDir() . '/img/flechaAbajo.png' ) . '</a>';
+	//~ $titulo .= ;
+		
+	$dropdown = foo_div( strtolower( $plural[$tax_name] ),"dropdown", $titulo . $contenido );
+	
+	return $dropdown;
 }
 
 
@@ -562,6 +574,122 @@ add_theme_support( 'post-thumbnails' );
 
 
 
+
+
+
+
+
+
+
+
+
+require_once("cpt/proyecto.php");
+require_once("cpt/metabox.php");
+require_once("utilidades/funcionesHTML.php");
+
+
+
+
+
+
+
+
+
+
+
+function filtrar_proyectos(){  
+	global $post;
+	//~ 
+	$categorias = $_POST['categorias'];
+	$disciplinas = $_POST['disciplinas'];
+	
+	//~ var_dump($categorias);
+	//~ 
+	$categoriasID = array();
+	$disciplinasID = array();
+	
+	foreach($categorias as $c ) {
+		$id = get_term_by('name', $c, 'category')->term_id;
+		if($id)
+			array_push($categoriasID, $id  );
+	}
+	foreach($disciplinas as $c ) {
+		$id = get_term_by('name', $c, 'disciplina')->term_id;
+		if($id)
+			array_push($disciplinasID, $id  );
+	}
+
+
+	$args = array(
+		'post_type' => 'proyecto',
+		//~ 'category'=>$categorias[0]
+		'tax_query' => array(
+			'relationship' => 'IN',
+			array(
+				'taxonomy' => 'category',
+				'field' => 'id',
+				'terms' => $categoriasID
+			)
+			,
+			array(
+				'taxonomy' => 'disciplina',
+				'field' => 'id',
+				'terms' => $disciplinasID
+			)
+		)
+	);
+	wp_reset_query();
+
+	//$args =array('post_type'=>array('proyecto','exposicion','residencia','eco_bar','publicacion','pabellon'),'order_by'=>'rand','destacada'=>'inicio');
+	$query = new WP_Query( $args);
+
+global $archiveLayout;
+
+$archiveLayouts = [
+	array(
+		'large'=> 1,
+		'medium'=> 2,
+	),
+	array(
+		'large'=> 1,
+		'medium'=> 0,
+	)
+];
+
+$num_grandes = (int) $archiveLayouts[ $archiveLayout ]["large"];
+$num_medianos = (int) $archiveLayouts[ $archiveLayout ]["medium"];
+
+$postStr="";
+$i = 0;
+
+
+while ( $query->have_posts() ) : 
+	$query -> the_post();
+		$titulo = get_the_title();
+		$img = foo_img( foo_thumb( foo_featImg($post->ID), 300, 300 ) );
+		$link = get_permalink();
+
+		$proyecto = foo_link($titulo,$link);
+		
+		$lis .= foo_li( "","", $proyecto );
+		
+		
+
+		$postStr .= foo_article( array(
+			'class' => 'proyecto large-2 small-6 columns',
+			'header'=> foo_link(foo_vcenter( foo_h( $titulo, 5) ),$link),
+			'content'=> $img
+		) );
+
+
+
+endwhile;
+
+	die( $postStr );
+    
+}
+add_action( 'wp_ajax_nopriv_filtrar_proyectos', 'filtrar_proyectos' );  
+add_action( 'wp_ajax_filtrar_proyectos', 'filtrar_proyectos' );  
 
 
 

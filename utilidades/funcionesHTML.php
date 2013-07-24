@@ -52,7 +52,7 @@ function foo_vcenter($content="", $link="", $align="justify", $id="", $class="" 
 	$str = 	foo_div($id,'vcenter_table '.$classm,
 				foo_div("","vcenter_container",foo_div("", "vcenter_content ".$align, $content) )				
 			);
-	if($link!="") $str = makeLink($str,$link);
+	if($link!="") $str = foo_link($str,$link);
 	
 	return $str;
 }
