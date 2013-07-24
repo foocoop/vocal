@@ -62,4 +62,9 @@
 	echo foo_div("url","hidden",get_site_url());
 	echo foo_div("ajax-loader","hidden",$ajaxLoader);
 
+
+echo foo_div("","debug",count(get_terms('category', 'fields=ids')));
 ?>
+
+
+

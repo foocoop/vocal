@@ -495,7 +495,7 @@ add_action('admin_menu', 'remove_menus');
 	
 function vocal_main_nav() {
 	echo foo_div("menu-grande","vocal_menu hide-for-small row",
-		foo_div( "", "small-6 large-2 columns",	'<label><input type="checkbox" value="Todos">Todos los proyectos</label>' ) .
+		foo_div( "checkbox-todos", "small-6 large-2 columns",	'<label><input type="checkbox" value="Todos">Todos los proyectos</label>' ) .
 		foo_div( "", "small-6 large-2 columns",	taxonomyDropdown('disciplina') ) .
 		foo_div( "", "small-6 large-2 columns",	taxonomyDropdown('category') ) .
 		foo_div( "", "small-6 large-2 columns",	'' ) .
@@ -608,62 +608,95 @@ function filtrar_proyectos(){
 	$categoriasID = array();
 	$disciplinasID = array();
 	
-	foreach($categorias as $c ) {
-		$id = get_term_by('name', $c, 'category')->term_id;
-		if($id)
-			array_push($categoriasID, $id  );
-	}
-	foreach($disciplinas as $c ) {
-		$id = get_term_by('name', $c, 'disciplina')->term_id;
-		if($id)
-			array_push($disciplinasID, $id  );
-	}
+	$taxQuery = array();
+	
 
-
-	$args = array(
-		'post_type' => 'proyecto',
-		//~ 'category'=>$categorias[0]
-		'tax_query' => array(
-			'relationship' => 'IN',
+	//~ if( count( $categorias ) > 0 || count( $disciplinas ) > 0 )
+		//~ $taxQuery['relation'] = 'IN';
+	
+	if( count( $categorias ) > 0){
+		foreach($categorias as $c ) {
+			$id = get_term_by('name', $c, 'category')->term_id;
+			if($id)
+				array_push($categoriasID, $id  );
+		}
+		array_push( $taxQuery, 
 			array(
 				'taxonomy' => 'category',
 				'field' => 'id',
 				'terms' => $categoriasID
 			)
-			,
+		);
+	} else {
+		//~ array_push( $taxQuery, 
+			//~ array(
+				//~ 'taxonomy' => 'category',
+				//~ 'field' => 'id',
+				//~ 'terms' => get_terms('category', 'fields=ids')
+			//~ )
+		//~ );
+		//~ 
+	}
+	
+	if( count( $disciplinas ) > 0){
+		foreach($disciplinas as $c ) {
+			$id = get_term_by('name', $c, 'disciplina')->term_id;
+			if($id)
+				array_push($disciplinasID, $id  );
+		}
+		array_push( $taxQuery, 
 			array(
 				'taxonomy' => 'disciplina',
 				'field' => 'id',
 				'terms' => $disciplinasID
 			)
-		)
-	);
+		);
+	} else {
+		//~ array_push( $taxQuery, 
+			//~ array(
+				//~ 'taxonomy' => 'disciplina',
+				//~ 'field' => 'id',
+				//~ 'terms' => get_terms('disciplina', 'fields=ids')
+			//~ )
+		//~ );
+		
+	}
+
+	if($taxQuery)
+		$args = array(
+			'post_type' => 'proyecto',
+			'tax_query' => $taxQuery
+		);
+	else
+		$args = array(
+			'post_type' => 'proyecto'
+		);	
 	wp_reset_query();
 
 	//$args =array('post_type'=>array('proyecto','exposicion','residencia','eco_bar','publicacion','pabellon'),'order_by'=>'rand','destacada'=>'inicio');
 	$query = new WP_Query( $args);
 
-global $archiveLayout;
+	global $archiveLayout;
 
-$archiveLayouts = [
-	array(
-		'large'=> 1,
-		'medium'=> 2,
-	),
-	array(
-		'large'=> 1,
-		'medium'=> 0,
-	)
-];
+	$archiveLayouts = [
+		array(
+			'large'=> 1,
+			'medium'=> 2,
+		),
+		array(
+			'large'=> 1,
+			'medium'=> 0,
+		)
+	];
 
-$num_grandes = (int) $archiveLayouts[ $archiveLayout ]["large"];
-$num_medianos = (int) $archiveLayouts[ $archiveLayout ]["medium"];
+	$num_grandes = (int) $archiveLayouts[ $archiveLayout ]["large"];
+	$num_medianos = (int) $archiveLayouts[ $archiveLayout ]["medium"];
 
-$postStr="";
-$i = 0;
+	$postStr="";
+	$i = 0;
 
 
-while ( $query->have_posts() ) : 
+	while ( $query->have_posts() ) : 
 	$query -> the_post();
 		$titulo = get_the_title();
 		$img = foo_img( foo_thumb( foo_featImg($post->ID), 300, 300 ) );
@@ -683,10 +716,21 @@ while ( $query->have_posts() ) :
 
 
 
-endwhile;
+	endwhile;
 
-	die( $postStr );
-    
+
+	$arr2json = array(
+		'posts' => $postStr,
+		'lis' => $lis,	
+	);
+
+	header('Content-Type: application/json');
+	$json = json_encode($arr2json);
+	die( $json );
+
+	//~ var_dump(in_array('Todas las Categorías',$categorias) );
+	//~ die("...");
+
 }
 add_action( 'wp_ajax_nopriv_filtrar_proyectos', 'filtrar_proyectos' );  
 add_action( 'wp_ajax_filtrar_proyectos', 'filtrar_proyectos' );  

@@ -121,8 +121,11 @@
 		
 		
 		var menuCheckbox = function( object, array ) {
+			
+			
 			var name = object.attr('name');
 			var checked = object.is(':checked');
+			
 			if( checked )
 				array.push( name ) ;
 			else {
@@ -136,17 +139,25 @@
 			
 			$j("#proyectos").html(ajaxloader);
 			
+			
+			var data = {};
+			
+			data.action = 'filtrar_proyectos';
+			data.categorias = categorias;
+			data.disciplinas = disciplinas;
+			
 			//~ var post_type  = $j( this ).text();
 			$j.ajax({  
 				type: 'POST',  
 				url: url+'/wp-admin/admin-ajax.php',  
-				data: {  				
-					action: 'filtrar_proyectos',
-					categorias: categorias,
-					disciplinas: disciplinas						
-				},  
+				data: data,  
 				success: function(data, textStatus, XMLHttpRequest){  
-					$j("#proyectos").html(data);
+					console.log(data);
+
+					$j("#proyectos").html(data.posts);
+					$j("#menu_proyectos.hide-for-small").html(data.lis);
+					
+							//~ echo foo_div("menu_proyectos","small-6 large-2 columns show-for-small",foo_dropdown( $post->id, "opcion", $proyectos));
 					//~ setupLis();
 				},  
 				error: function(MLHttpRequest, textStatus, errorThrown){  
@@ -162,16 +173,74 @@
 		
 		var disciplinasCheckboxes = $j("#disciplinas li input[type=checkbox]");
 		var categoriasCheckboxes = $j("#categorías li input[type=checkbox]");
+		var todosCheckbox = $j("#checkbox-todos input");
 		
 		categoriasCheckboxes.click(function(){ 
-			menuCheckbox( $j(this) , categorias );
-			console.log(categorias);
+			var name = $j(this).attr('name');
+			var checked = $j(this).is(':checked');
+			
+			if( checked && ( name == "Todas las Categorías" || name == "All Categories" ) ) {
+				
+				categorias=[];
+				
+				$j(this).parent().siblings().find('input').each(function(i){
+					$j(this).prop('checked',true);
+					var name = $j(this).attr('name');
+					categorias.push(name);
+				});
+				
+			}
+			menuCheckbox( $j(this) , categorias );				
 		});
 		
 		disciplinasCheckboxes.click(function(){ 
-			menuCheckbox( $j(this) , disciplinas );
-			console.log(disciplinas);
+			var name = $j(this).attr('name');
+			var checked = $j(this).is(':checked');
+			
+			if( checked && ( name == "Todas las Disciplinas" || name == "All Disciplines" ) ){
+				$disciplinas = [];				
+
+				$j(this).parent().siblings().find('input').each(function(i){
+					$j(this).prop('checked',true);
+					var name = $j(this).attr('name');
+					disciplinas.push(name);
+				});
+
+			}
+
+			
+			menuCheckbox( $j(this) , disciplinas );				
+
 		});
+		
+		todosCheckbox.click(function(){ 
+			var name = $j(this).attr('name');
+			var checked = $j(this).is(':checked');
+
+			if(checked) {
+				
+				categorias=[];
+				
+				categoriasCheckboxes.each(function(i){
+					$j(this).prop('checked',true);
+					var name = $j(this).attr('name');
+					categorias.push(name);
+				});
+			
+				$disciplinas = [];				
+
+				disciplinasCheckboxes.each(function(i){
+					$j(this).prop('checked',true);
+					var name = $j(this).attr('name');
+					disciplinas.push(name);
+				});
+
+			}
+			
+			menuCheckbox( $j(this) , disciplinas );				
+
+		});
+		
 		
 		
 		
