@@ -47,9 +47,9 @@ get_header(); ?>
 
 <script type="text/javascript">
 
-
-	$(document).ready(function(){	
-			var txt = $('.texto');
+	$j = jQuery.noConflict();
+	$j(document).ready(function(){	
+			var txt = $j('.texto');
 			var as = txt.find('a img').parent();
 			var imgs = txt.find('a img');
 			//~ alert(imgs.length);

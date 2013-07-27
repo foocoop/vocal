@@ -69,10 +69,28 @@ article .th {margin-bottom:10px; margin-bottom:1em;}
    Typography
 ----------------------------------------- */
 
-body,h1,h2,h3,h4,h5,h6,p {font-family: 'Open Sans', sans-serif;}
+body,h1,h2,h3,h4,h5,h6,p {font-family: 'Lucida Console', Monaco, monospace, sans-serif; font-size:13px;}
 h1,h2,h3,h4,h5,h6,a:link {font-weight:300;}
 
 .site-title .subheader {margin-bottom:0;}
+
+
+
+@font-face {
+    font-family: 'alte_haas_groteskregular';
+    src: url('fonts/altehaasgroteskregular-webfont.eot');
+    src: url('fonts/altehaasgroteskregular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/altehaasgroteskregular-webfont.woff') format('woff'),
+         url('fonts/altehaasgroteskregular-webfont.ttf') format('truetype'),
+         url('fonts/altehaasgroteskregular-webfont.svg#alte_haas_groteskregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
+
 
 /* -----------------------------------------
    Header
@@ -139,20 +157,6 @@ body > .row {
     max-width: 100% !important;
 }
 
-
-@font-face {
-    font-family: 'alte_haas_groteskregular';
-    src: url('fonts/altehaasgroteskregular-webfont.eot');
-    src: url('fonts/altehaasgroteskregular-webfont.eot?#iefix') format('embedded-opentype'),
-         url('fonts/altehaasgroteskregular-webfont.woff') format('woff'),
-         url('fonts/altehaasgroteskregular-webfont.ttf') format('truetype'),
-         url('fonts/altehaasgroteskregular-webfont.svg#alte_haas_groteskregular') format('svg');
-    font-weight: normal;
-    font-style: normal;
-
-}
-
-
 h1,h2,h3,h4,h5{
 	font-family: 'alte_haas_groteskregular';
 }
@@ -211,7 +215,6 @@ p {
 
 #menu_proyectos li {
 	padding: 5px 10px;
-	
 }
 
 #menu_proyectos li:hover {
@@ -221,13 +224,107 @@ p {
 }
 
 
+.taxonomias {
+	display:inline-block;
+	text-transform:uppercase;
+	font-size:11px;
+	font-family: 'Lucida Console', Monaco, monospace;
+}
+
+.taxonomias li.checkbox {
+	margin:2px;
+	padding:2px;
+}
+.taxonomias li.checkbox input {
+	margin:3px 5px;
+	border:1px solid black;
+	border-radius:0;
+}
+
+.taxonomias .dropdown {
+	height: 30px;
+	display:inline-block;
+	position:relative;
+}
+.taxonomias .dropdown .button {
+font-size:11px;
+font-weight:normal;
+
+
+	height:30px;
+	line-height:30px;
+}
+
+.dropdown-panel {
+    position: absolute !important;
+    display: none;
+    width: 99%;
+    overflow: auto;
+    z-index: 10000;
+    background-color:#fff;
+    border:1px solid black;
+	background:white;
+/*padding:10px;/**/
+
+/* Border-box model so that padding doesn't affect dimensions. See http://css-tricks.com/box-sizing */
+-webkit-box-sizing: border-box;
+-moz-box-sizing: border-box;
+box-sizing: border-box;
+
+moz-box-shadow: 0 0 13px rgba(0,0,0,0.31);
+-webkit-box-shadow: 0 0 13px rgba(0,0,0,0.31);
+box-shadow: 0 0 13px rgba(0,0,0,0.31);
+
+/*border-radius: 5px;/**/
+}
+
+
+
+
+#selector_img_size input {
+	width:auto;
+	padding: 3px
+}
+
+#selector_img_size .active{
+	font-weight:bold;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 #content,.content{
 	height: 100%;
 }
 
+#content .post > div {
+	border-top:2px solid black;
+	padding:10px
+}
 
+#content .post .titulo {
+	font-weight:bold;
+}
 
+#content .post .large-8 {
+	width:61%;
+	margin:2%;
+}
+
+#content .post .large-4 {
+	width:31%;
+	margin:2%;
+}
 
 
 
@@ -294,13 +391,6 @@ li{
 
 
 
-#imagenes input {
-	width:auto;
-	padding: 3px
-/*
-	margin: 0 5px
-*/
-}
 
 
 /*
@@ -316,10 +406,11 @@ label input { padding: 0;}
 	visibility:hidden;
 	position:absolute;
 	height:100%;
+	text-transform:uppercase;
+	font-weight:bold;
 }
 
 #proyectos article .content {
-	
 }
 
 #proyectos article:hover > header {
@@ -356,15 +447,33 @@ input {
 }
  
 .button{
-background:none;
-background-color:#fff !important;
-color:#000;
+/*
+	width:100%;
+*/
+	padding: 0 10px;
+	border-color:#000;
+	background:none;
+	background-color:#fff !important;
+	color:#000;
+}
+
+.button .titulo {
+/*
+	width:80%;
+*/
+	padding: 0 20px 0 10px;
+	float: left;
 }
 
 .button img {
-	min-width:20px;
-	height:25px;
-	margin:2px;
+	width:10px;
+	height:15px;
+	min-width:10px;
+	margin: 5px 0 0 20px;
+/*
+	padding: 10px;
+	position:absolute;
+*/
 }
 .button:hover{
 color:#343434;
@@ -378,6 +487,7 @@ select {
 label,
 input,
 select {
+	appearance:none;
 	font-size:11px;
 	width:auto;
 	background-color:#fff !important;
@@ -463,4 +573,15 @@ select {
 	opacity:1;
 */
 	background-color:#FFF;
+}
+
+
+
+
+
+
+
+input[type="checkbox"] {
+   
+   border:1px solid black;
 }

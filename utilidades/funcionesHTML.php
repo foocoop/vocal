@@ -73,6 +73,22 @@ function foo_scroller($content){
 
 
 
+function foo_span($id="",$class="", $content="", $link=""){
+	$str = '<span';
+		if($id!="") { 		$str .= ' id="'.$id.'"';	}
+		if($class!="") { 	$str .= ' class="'.$class.'"'; }
+
+	$str .= '>';
+
+		if($link!="") { 		$str .= '<a href="'.$link.'">';	}
+		if($content!="") { 	$str .= $content;	}
+		if($link!="") {		$str .= '</a>';	}
+	
+  $str .= '</span>';
+	
+	return $str;
+}
+
 
 
 /***********************************************************

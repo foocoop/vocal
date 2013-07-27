@@ -19,6 +19,13 @@
 	border:3px solid red;
 }
 
+.ajax-loader{
+	width: 30px;
+	height:15px;
+}
+
+
+
 /***********************************
  *			FRAMEWORK	
  * ********************************/

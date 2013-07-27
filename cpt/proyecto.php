@@ -1,21 +1,5 @@
 <?php
-/* Bones Proyecto Type Example
-This page walks you through creating 
-a Proyecto type and taxonomies. You
-can edit this one or copy the following code 
-to create another one. 
 
-I put this in a seperate file so as to 
-keep it organized. I find it easier to edit
-and change things if they are concentrated
-in their own file.
-
-Developed by: Eddie Machado
-URL: http://themble.com/bones/
-*/
-
-
-// let's create the function for the custom type
 function proyecto() { 
 	// creating (registering) the custom type 
 	register_post_type( 'proyecto', /* (http://codex.wordpress.org/Function_Reference/register_post_type) */
@@ -91,7 +75,5 @@ function proyecto() {
     		'query_var' => true,
     	)
     );   
-    
-	
 
 ?>

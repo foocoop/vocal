@@ -53,18 +53,45 @@
 <div id="content" class="row">
 
 
+<a href="#" data-dropdown="drop1">Has Dropdown</a>
+<ul id="drop1" class="f-dropdown" data-dropdown-content>
+  <li><a href="#">This is a link</a></li>
+  <li><a href="#">This is another</a></li>
+  <li><a href="#">Yet another</a></li>
+</ul>
+
+<a href="#" data-dropdown="drop2">Has Content Dropdown</a>
+<ul id="drop2" class="f-dropdown content" data-dropdown-content>
+  <li><a href="#">This is a link</a></li>
+  <li><a href="#">This is another</a></li>
+  <li><a href="#">Yet another</a></li>
+</ul>
+
+
+
 
 <?php
 
+
+
     $imgDir = get_stylesheet_directory_uri()."/img/";
-    $ajaxLoader = foo_div("ajax-loader","",foo_img($imgDir."ajax-loader.gif"));
+    $ajaxLoader = foo_div("","ajax-loader",foo_img($imgDir."ajax-loader.gif"));
 
 	echo foo_div("url","hidden",get_site_url());
-	echo foo_div("ajax-loader","hidden",$ajaxLoader);
+	echo foo_div("ajax-loader-div","hidden",$ajaxLoader);
 
 
-echo foo_div("","debug",count(get_terms('category', 'fields=ids')));
+
+
+	//~ $arr2json = array(
+		//~ 'posts' => "hola",
+		//~ 'lis' => "adios"	
+	//~ );
+//~ 
+	//~ header('Content-Type: application/json');
+	//~ $json = json_encode($arr2json);
+//~ echo foo_div("","debug",$json);
+
+
+
 ?>
-
-
-
