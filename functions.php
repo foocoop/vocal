@@ -498,8 +498,10 @@ add_action('admin_menu', 'remove_menus');
 function vocal_main_nav() {
 	echo foo_div("menu-grande","vocal_menu hide-for-small row",
 		foo_div( "checkbox-todos", "small-6 large-2 columns",	'<label><input type="checkbox" value="Todos">Todos los proyectos</label>' ) .
-		foo_div( "disciplinas", "small-6 large-2 columns taxonomias",	taxonomyDropdown('disciplina') ) .
-		foo_div( "categorias", "small-6 large-2 columns taxonomias",	taxonomyDropdown('category') ) .
+		foo_div("taxonomias","small-6 large-4 columns",
+			taxonomyDropdown('disciplina') .
+			taxonomyDropdown('category')
+		) .
 		foo_div( "", "small-6 large-2 columns",	'' ) .
 		foo_div( "selector_img_size", "large-2 small-6 columns",
 			'Imágenes: ' .
@@ -558,15 +560,21 @@ function taxonomyDropdown( $tax_name )
 	//~ $opciones.= "</select>";
 	
 	
-	$contenido = foo_div("","dropdown-panel",$opciones);
 	
-	$titulo .= '<a class="dropdown-button button">' . $plural[ $tax_name ] . '<img src="'.themeDir() . '/img/flechaAbajo.png" class="dropdown-icon"/>' . '</a>';
-	//$titulo .= '<a class="dropdown-button button">' . '<p class="titulo">' . $plural[ $tax_name ]  . '</p></a><a class="dropdown-button button">'.foo_span( "", "dropdown-icon",foo_img( themeDir() . '/img/flechaAbajo.png' ) ) . '</a>';
+	
+	$titulo .=	'<div class="button" data-dropdown="'
+				. strtolower( $plural[$tax_name] ).'">'
+				. foo_div("","titulo", $plural[ $tax_name ] )
+				. foo_div("","img", foo_img( themeDir() . '/img/flechaAbajo.png' ) )
+				. '</div>';
 	
 	
 	//~ $titulo .= ;
 		
-	$dropdown = foo_div( strtolower( $plural[$tax_name] ),"dropdown", $titulo . $contenido );
+	$dropdown = $titulo
+				. '<div id="' . strtolower( $plural[$tax_name] ) 
+				. '" class="dropdown" data-dropdown-content>'
+				. $opciones . '</div>';
 	
 	return $dropdown;
 }

@@ -55,26 +55,7 @@
 		
 		setup_grid();
 		
-		var dropdowns = $j(".dropdown");
-		
-		var callback = function(target) { alert( 'You clicked ' + $(target).attr('id')); }
-
-		// Initialize dropdowns:
-		dropdowns.dropdown();
-		dropdowns.dropdown({callback:callback});
-		dropdowns.dropdown({width:'400px', maxHeight:'180px',callback:callback});
-		// Force one open:
-		dropdowns.dropdown('hide');
-								
-
-
-
-
-
-
-
-
-		
+	
 		
 		$j("#selector_img_size input").click(function(){
 			var img_size = $j(this).attr('value');			
@@ -238,7 +219,9 @@
 		
 		
 		
-		
+		$j(".taxonomias.button").click(function(){
+			$j(this).next().show();
+		});
 		
 		
 			
