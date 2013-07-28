@@ -288,9 +288,9 @@
 		var segments = [ 896, 1024, 1152, 1280, 1368, 1496 ];
 		var sizes = [];
 		
-		sizes["L"] = { options : [ 12, 6, 4, 3 ], 		small_cols : 12 }
-		sizes["M"] = { options : [ 6, 4, 3, 2 ],	small_cols : 6 }
-		sizes["S"] = { options : [ 4, 3, 2, 1 ], 		small_cols : 4 }
+		sizes["L"] = { options : [ 6, 4, 3 ], 	small_cols : 6 }
+		sizes["M"] = { options : [ 4, 3, 2 ],	small_cols : 4 }
+		sizes["S"] = { options : [ 3, 2, 1 ], 	small_cols : 3 }
 
 		var size = sizes[ img_size ];
 		
