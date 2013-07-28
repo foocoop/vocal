@@ -16,7 +16,7 @@
 			//~ $str .= foo_open(""."ten columns row clearfix");
 
 		$titulo = get_the_title();
-		$img = foo_img( foo_thumb( foo_featImg($post->ID), 300, 300 ) );
+		$img = foo_img( foo_thumb( foo_featImg($post->ID), 550, 550*0.77 ) );
 		$link = get_permalink();
 
 		$proyecto = foo_link($titulo,$link);
