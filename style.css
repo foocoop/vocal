@@ -261,22 +261,24 @@ p {
 	line-height:30px;
 	width:40%;
 	float:left;
-	padding: 0 10px;
+	padding: 0 !important;
 	border-color:#000;
 	background:none;
 	background-color:#fff !important;
 	color:#000;
+	margin: 0 5px 0 0;
 }
 .button > div {
 	display:inline-block;
+/*
 	padding:2px;
+*/
 	float:left;
-	height:20px;
 	height:20px;
 
 }
 .button .titulo {
-	width:75%;
+	width:85%;
 }
 
 .button .img {
@@ -288,6 +290,7 @@ p {
 	min-width:13px;
 	width:13px;
 	height:15px;
+	padding:3px;
 }
 .button:hover{
 color:#343434;
