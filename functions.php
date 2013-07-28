@@ -682,7 +682,7 @@ function filtrar_proyectos(){
 		$proyecto = foo_link($titulo,$link);
 		$lis .= foo_li( "","", $proyecto );
 		$postStr .= foo_article( array(
-			'class' => 'proyecto large-2 small-6 columns '.$img_size,
+			'class' => 'proyecto columns '.$img_size,
 			'header'=> foo_link(foo_vcenter( foo_h( $titulo, 5) ),$link),
 			'content'=> $img
 		) );

@@ -27,7 +27,7 @@
 		
 
 		$str .= foo_article( array(
-			'class' => 'proyecto large-2 small-6 columns',
+			'class' => 'proyecto columns',
 			'header'=> foo_link(foo_vcenter( foo_h( $titulo, 5) ),$link),
 			'content'=> $img
 		) );

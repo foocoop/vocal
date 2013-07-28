@@ -123,6 +123,7 @@
 				data: data, 
 				success: function(data, textStatus, XMLHttpRequest){  
 					$j("#proyectos").html(data);
+					setup_grid();
 				},  
 				error: function(MLHttpRequest, textStatus, errorThrown){  
 					alert(errorThrown);  
@@ -193,7 +194,7 @@
 			
 			menuCheckbox( $j(this) , disciplinas );				
 			cargar_posts();		
-
+			
 		});
 		
 		todosCheckbox.click(function(){ 
@@ -230,8 +231,8 @@
 			btn.siblings().removeClass("active");
 			btn.addClass("active");
 			img_size = btn.attr('value');
+			//~ cargar_posts();		
 			setup_grid();
-			cargar_posts();		
 
 		});
 		
@@ -283,32 +284,6 @@
 		return [lo, hi];
 	}
 	
-	var num_columnas = function( img_size, width ){
-		
-		var posibles =[ 1, 2, 3, 4, 6, 12 ];
-		
-		var rangos = [];
-		rangos["L"] = [ 1200, 1000, 800, 600 ];
-		rangos["M"] = [ 1200, 1075, 950, 825, 700, 575 ];
-		rangos["S"] = [ 1100, 1000, 900, 800, 700, 600 ];
-
-		var rango = rangos[img_size];
-
-		if( typeof(rango)!="undefined")	{
-			var closest = getClosestValues( rango, width );
-			var offset = posibles.length - rango.length;
-			console.log(offset);
-			col_num = posibles[ offset + rango.indexOf( closest[0]  ) ];
-			return col_num;
-		} else 
-			return 4;
-		
-		//~ console.log( closest );
-		
-		
-		
-	}
-		
 	function setup_grid() {
 		
 		var img_size = $j("#selector_img_size .active").attr('value');
@@ -322,15 +297,55 @@
 		
 		principal.children().width(new_width);
 		var proyectos = $j('#proyectos .proyecto');
-		var newClass;
+		var large_class;
 		clearClasses(proyectos);
 //~ 
 //~ 
+		var possible =[ 12, 6, 4, 3, 2, 1 ];
+		var segments = [ 896, 1024, 1152, 1280, 1368, 1496 ];
+		var sizes = [];
+		
+		sizes["L"] = { options : [ 12, 6, 4, 3 ], 		small_cols : 12 }
+		sizes["M"] = { options : [ 6, 4, 3, 2 ],	small_cols : 6 }
+		sizes["S"] = { options : [ 4, 3, 2, 1 ], 		small_cols : 4 }
 
-		newClass = 'large-' + num_columnas( img_size, width );
+		var size = sizes[ img_size ];
+		
+		if( typeof( size )!="undefined")	{
 
-	
-		proyectos.addClass(newClass);
+			if ( width > segments[ size.options.length - 1 ]) {
+				col_num = size.options[ size.options.length - 1 ];
+			} else if ( width < segments[ 0 ] ) {
+				col_num = size.options[ 0 ];
+			}
+			else {
+				var closest = getClosestValues( segments, width )[0];
+				var index;
+				if( typeof(closest) == "undefined" ){
+					closest = 0;
+				}
+				var index_segment = segments.indexOf( closest  );
+
+				var index;
+				if( index_segment < 0 )
+					index = 0;
+				else if ( index_segment > size.options.length )
+					index = size.options.length - 1;
+				else 
+					index = index_segment;
+				
+				col_num = size.options[ index ];
+				
+
+			}
+			
+			large_class = 'large-' + col_num;
+			small_class = 'small-' + size.small_cols;
+			
+			proyectos.addClass( large_class );
+			proyectos.addClass( small_class );
+			
+		} 
 		
 		
 	
