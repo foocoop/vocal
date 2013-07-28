@@ -212,8 +212,8 @@
 			btn.siblings().removeClass("active");
 			btn.addClass("active");
 			img_size = btn.attr('value');
-			//~ cargar_posts();		
-			setup_grid();
+			cargar_posts();		
+			//~ setup_grid();
 
 		});
 		
