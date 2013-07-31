@@ -331,7 +331,10 @@
 		} 
 		
 		
-	
+		var checkboxes = $j(':checkbox');
+
+
+		console.log( checkboxes );
 		
 	};
 

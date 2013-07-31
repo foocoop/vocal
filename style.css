@@ -235,12 +235,6 @@ p {
 	margin:2px;
 	padding:2px;
 }
-#taxonomias li.checkbox input {
-	margin:3px 5px;
-	border:1px solid black;
-	border-radius:0;
-}
-
 .dropdown {
 	display: block;
 	left: -99999px;
@@ -471,6 +465,7 @@ select {
 label,
 input,
 select {
+/*
 	appearance:none;
 	font-size:11px;
 	width:auto;
@@ -481,6 +476,7 @@ select {
 	width:100%;
 	margin:0;
 	padding: 4px 0;
+*/
 }
 
 /***********************************
@@ -565,7 +561,19 @@ select {
 
 
 
-input[type="checkbox"] {
-   
-   border:1px solid black;
+.ui-helper-hidden-accessible {
+border: 0;
+clip: rect(0 0 0 0);
+height: 1px;
+margin: -1px;
+overflow: hidden;
+padding: 0;
+position: absolute;
+width: 1px;
 }
+
+
+
+
+
+

@@ -4,37 +4,45 @@
 		
 					
 		<?php
-		
+
 		$i=0;
 		$col_no = 6;
 		$proyectos = array();
+		$postStr="";
+		$posts_per_page = 0;
+		$current_post = 0;
+		$end = "";
+
+		while (have_posts()) : The_post();
+			$posts_per_page++;
+		endwhile;
+
+		rewind_posts();
 		
 		if (have_posts()) : while (have_posts()) : the_post();
-		//~ 
-		//~ $i++;
-		//~ if( $i % $col_no )
-			//~ $str .= foo_open(""."ten columns row clearfix");
+			
+			$current_post++;
+			if( $current_post == $posts_per_page){
+				$end = " end";
+			}
 
-		$titulo = get_the_title();
-		$img = foo_img( foo_thumb( foo_featImg($post->ID), 550, 550*0.77 ) );
-		$link = get_permalink();
+			$titulo = get_the_title();
+			$img = foo_img( foo_thumb( foo_featImg($post->ID), 550, 550*0.77 ) );
+			$link = get_permalink();
 
-		$proyecto = foo_link($titulo,$link);
-		
-		$lis .= foo_li( "","", $proyecto );
-		
-		array_push( $proyectos , $proyecto  );
-		
+			$proyecto = foo_link($titulo,$link);
+			
+			$lis .= foo_li( "","", $proyecto );
+			
+			array_push( $proyectos , $proyecto  );
+			
 
-		$str .= foo_article( array(
-			'class' => 'proyecto columns',
-			'header'=> foo_link(foo_vcenter( foo_h( $titulo, 5) ),$link),
-			'content'=> $img
-		) );
-					
-		//~ if( $i % $col_no )
-			//~ $proyectos .= foo_close();
-
+			$str .= foo_article( array(
+				'class' => 'proyecto columns' . $end,
+				'header'=> foo_link(foo_vcenter( foo_h( $titulo, 5) ),$link),
+				'content'=> $img
+			) );
+						
 		endwhile; endif;
 		
 		

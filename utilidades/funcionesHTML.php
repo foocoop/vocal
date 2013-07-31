@@ -132,7 +132,7 @@ function foo_imgs( $eventoID, $size = 'thumbnail', $addFeatured = 'false') {
 
 
 function foo_thumb( $src, $w=200, $h=200, $zc=1, $q=100 ) {
-  return themeDir().'/scripts/timthumb/timthumb.php?src='.$src.'&w='.$w.'&h='.$h.'&zc='.$zc.'&q='.$q;
+  return themeDir().'/scripts/timthumb/timthumb.php?src='.$src.'&w='.(int)$w.'&h='.(int)$h.'&zc='.(int)$zc.'&q='.(int)$q;
 }
 
 
@@ -311,6 +311,11 @@ function foo_article( $args ) {
 	$str .= '</article>';
 	
 	return $str;
+}
+
+
+function foo_dbg( $content ) {
+	echo foo_div("","debug",$content);
 }
 
 ?>

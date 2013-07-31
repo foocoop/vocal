@@ -18,6 +18,9 @@
 <meta charset="<?php bloginfo( 'charset' ); ?>" />
 
 
+<!--
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+-->
 
 <link rel="profile" href="http://gmpg.org/xfn/11" />
 <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
@@ -27,7 +30,11 @@
 
 <title><?php wp_title(); ?></title>
 
-<?php wp_enqueue_script("jquery"); ?>
+<?php	wp_enqueue_script("jquery");
+		//~ wp_enqueue_script("jquery-ui-core");
+		//~ wp_enqueue_script("jquery-ui-widget");
+		//~ wp_enqueue_script("jquery-ui-button");
+?>
 
 <?php wp_head(); ?>
 
@@ -36,7 +43,8 @@
 <!--
 -->
 
-<script language="javascript" src="<?php echo get_stylesheet_directory_uri(); ?>/scripts/jquery-easy-drop-down/jquery.dropdown.js" type="text/javascript"></script>
+<script language="javascript" src="<?php echo get_stylesheet_directory_uri(); ?>/scripts/iCheck/jquery.icheck.min.js" type="text/javascript"></script>
+
 
 <body <?php body_class(); ?>>
 

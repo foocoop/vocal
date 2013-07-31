@@ -674,11 +674,19 @@ function filtrar_proyectos(){
 		)
 	);
 
-	$postStr="";
-	$i = 0;
+
+	$current_post = 0;
+	$end = "";
+
+
+	$posts_per_page = $query->found_posts;
 
 	while ( $query->have_posts() ) : 
 	$query -> the_post();
+		$current_post++;
+		if( $current_post == $posts_per_page){
+			$end = " end";
+		}
 		$titulo = get_the_title();
 		if($img_size == "L")
 			$img = foo_img( foo_thumb( foo_featImg($post->ID), 800,800*0.77 ) );
@@ -690,7 +698,7 @@ function filtrar_proyectos(){
 		$proyecto = foo_link($titulo,$link);
 		$lis .= foo_li( "","", $proyecto );
 		$postStr .= foo_article( array(
-			'class' => 'proyecto columns '.$img_size,
+			'class' => 'proyecto columns ' . $img_size . $end,
 			'header'=> foo_link(foo_vcenter( foo_h( $titulo, 5) ),$link),
 			'content'=> $img
 		) );
