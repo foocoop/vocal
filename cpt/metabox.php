@@ -1,4 +1,4 @@
-<?
+<?php
 
 
 add_action('admin_init', 'foo_add_meta_boxes', 1);

@@ -20,7 +20,7 @@ get_header(); ?>
 			
 				$titulo = get_the_title();
 				$titulo = foo_div("","titulo",foo_h($titulo,3));
-				$texto = foo_div("","texto", $post->post_content );
+				$texto = foo_div("","texto", filter( $post->post_content, "content") );
 				echo foo_div("","large-8 columns imagenes",$titulo . foo_img(foo_featImg()));
 
 				$metalinks = get_post_meta($post->ID,'links_proyecto');
