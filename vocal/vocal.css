@@ -1,0 +1,61 @@
+/* iCheck plugin vocal skin, black
+----------------------------------- */
+.icheckbox_vocal,
+.iradio_vocal {
+    display: block;
+    margin: 0;
+    padding: 0;
+    width: 12px;
+    height: 12px;
+    background: url(vocal12.png) no-repeat;
+    border: none;
+    cursor: pointer;
+	float:left;
+}
+
+.icheckbox_vocal {
+    background-position: 0 0;
+}
+    .icheckbox_vocal.hover {
+        background-position: -13px 0;
+    }
+    .icheckbox_vocal.checked {
+        background-position: -26px 0;
+    }
+    .icheckbox_vocal.disabled {
+        background-position: -36px 0;
+        cursor: default;
+    }
+    .icheckbox_vocal.checked.disabled {
+        background-position: -48px 0;
+    }
+
+.iradio_vocal {
+    background-position: -60px 0;
+}
+    .iradio_vocal.hover {
+        background-position: -72px 0;
+    }
+    .iradio_vocal.checked {
+        background-position: -84px 0;
+    }
+    .iradio_vocal.disabled {
+        background-position: -96px 0;
+        cursor: default;
+    }
+    .iradio_vocal.checked.disabled {
+        background-position: -108px 0;
+    }
+
+/* Retina support */
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+       only screen and (-moz-min-device-pixel-ratio: 1.5),
+       only screen and (-o-min-device-pixel-ratio: 3/2),
+       only screen and (min-device-pixel-ratio: 1.5) {
+    .icheckbox_vocal,
+    .iradio_vocal {
+        background-image: url(vocal10@2x.png);
+        -webkit-background-size: 200px 20px;
+        background-size: 200px 20px;
+    }
+}
