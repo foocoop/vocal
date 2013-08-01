@@ -78,7 +78,7 @@
 
 		checkboxes.iCheck({
 			checkboxClass: 'icheckbox_vocal',
-			increaseArea: '20%' // optional
+			increaseArea: '0%' // optional
 		});
 		
 		var disciplinasCheckboxes = $j("#disciplinas li input[type=checkbox]");
@@ -343,6 +343,7 @@
 		setup_grid();
 		setup_checkboxes();
 	
+		$j('.icheckbox_vocal img').attr('width','10px');
 		
 		$j("#selector_img_size input").click(function(){
 			var img_size = $j(this).attr('value');			
