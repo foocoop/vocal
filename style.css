@@ -361,13 +361,24 @@ color:#343434;
 	font-weight:bold;
 }
 
-.post .texto {
-	display:none;
+.post .contenido {
+	max-height:400px;
+	display:inline-block;
+}
+.post .contenido .texto {
+	display:inline-block;
+/*
+	visibility:hidden;
+*/
+	height:400px;
+	overflow:auto;
+	
+	margin-top:30px;
 }
 
 .post .links{
 
-	border-top:1px solid #aaa;
+	border-top:3px solid #000;
 	margin:15px 0;
 	padding:15px 0;
 	
