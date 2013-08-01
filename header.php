@@ -18,9 +18,6 @@
 <meta charset="<?php bloginfo( 'charset' ); ?>" />
 
 
-<!--
-<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
--->
 
 <link rel="profile" href="http://gmpg.org/xfn/11" />
 <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
@@ -38,12 +35,11 @@
 
 <?php wp_head(); ?>
 
+<link rel="stylesheet" href="<?php echo themeDir(); ?>/iCheck/skins/vocal/vocal.css" />
+<script language="javascript" src="<?php echo get_stylesheet_directory_uri(); ?>/iCheck/jquery.icheck.min.js" type="text/javascript"></script>
+
 </head>
 
-<!--
--->
-
-<script language="javascript" src="<?php echo get_stylesheet_directory_uri(); ?>/scripts/iCheck/jquery.icheck.min.js" type="text/javascript"></script>
 
 
 <body <?php body_class(); ?>>
@@ -88,3 +84,4 @@
 
 
 ?>
+

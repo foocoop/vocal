@@ -231,9 +231,12 @@ p {
 	font-family: 'Lucida Console', Monaco, monospace;
 }
 
-#taxonomias li.checkbox {
+#taxonomias li {
 	margin:2px;
 	padding:2px;
+	width:100%;
+	display:block;
+	height:20px;
 }
 .dropdown {
 	display: block;
@@ -462,21 +465,16 @@ select {
 	border:1px solid black;
 }
 
-label,
-input,
-select {
-/*
-	appearance:none;
+label {
 	font-size:11px;
 	width:auto;
-	background-color:#fff !important;
 	text-transform: uppercase;
-	line-height:100%;
-	height:100%;
-	width:100%;
-	margin:0;
-	padding: 4px 0;
-*/
+	margin: 0 20px;
+	padding: 4px;
+}
+
+label:hover {
+	color:#00e2ae;
 }
 
 /***********************************
@@ -577,3 +575,8 @@ width: 1px;
 
 
 
+input[type="button"]{
+	background-color:#FFF;
+	margin:2px;
+	text-transform:uppercase;
+}

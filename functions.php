@@ -497,7 +497,7 @@ add_action('admin_menu', 'remove_menus');
 	
 function vocal_main_nav() {
 	echo foo_div("menu-grande","vocal_menu hide-for-small row",
-		foo_div( "checkbox-todos", "small-6 large-2 columns",	'<label><input type="checkbox" value="Todos">Todos los proyectos</label>' ) .
+		foo_div( "checkbox-todos", "small-6 large-2 columns",	'<input type="checkbox" id="Todos" value="Todos"><label for="Todos">Todos los proyectos</label>' ) .
 		foo_div("taxonomias","small-6 large-4 columns",
 			taxonomyDropdown('disciplina') .
 			taxonomyDropdown('category')
@@ -552,10 +552,10 @@ function taxonomyDropdown( $tax_name )
 	$taxs = get_terms( $tax_name, array( "hide_empty" => 0 ) );
 	//~ $result = '<select id="'.$tax_name.'">';
 	
-	$opciones .= foo_li( "", "checkbox", '<input type="checkbox" name="'.$todas.'">'.$todas);
+	$opciones .= foo_li( "", "checkbox", '<input type="checkbox" id="'.$todas.'" name="'.$todas.'"><label for="'.$nombre.'">'.$todas.'</label>');
 	foreach ($taxs as $tax) {
 		$nombre = $tax -> name;
-		$opciones .=  foo_li( "", "checkbox", '<input type="checkbox" name="'.$nombre.'">'.$nombre);
+		$opciones .=  foo_li( "", "checkbox", '<input type="checkbox" id="'.$nombre.'" name="'.$nombre.'"><label for="'.$nombre.'">'.$nombre.'</label>');
 	}
 	//~ $opciones.= "</select>";
 	

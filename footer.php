@@ -51,159 +51,106 @@
 
 	$j = jQuery.noConflict();
 	
-	$j(document).ready(function(){	
+	var menuCheckbox = function( object, array ) {
 		
-		setup_grid();
+		
+		var name = object.attr('name');
+		var checked = object.is(':checked');
+		
+		if( checked )
+			array.push( name ) ;
+		else {
+			var index = array.indexOf( name );
+			array.splice( index, 1 );
+		}
 		
 	
+	}
+	
+	
+	var disciplinas = [];
+	var categorias = [];
+	var img_size;
+
+	var setup_checkboxes = function() {
 		
-		$j("#selector_img_size input").click(function(){
-			var img_size = $j(this).attr('value');			
+		var checkboxes = $j(':checkbox');
+
+		checkboxes.iCheck({
+			checkboxClass: 'icheckbox_vocal',
+			increaseArea: '20%' // optional
 		});
-		
-		
-		/*
-		CHECKBOXES MENU:
-		*/
-		
-		
-		var menuCheckbox = function( object, array ) {
-			
-			
-			var name = object.attr('name');
-			var checked = object.is(':checked');
-			
-			if( checked )
-				array.push( name ) ;
-			else {
-				var index = array.indexOf( name );
-				array.splice( index, 1 );
-			}
-			
-		
-		}
-		
-		var cargar_posts = function() {
-		
-			url = $j("#url").html();
-			var ajaxloader = $j("#ajax-loader-div").html();
-			//~ $j("#proyectos").html(ajaxloader);
-			//~ $j("#menu_proyectos.hide-for-small").html('');
-			
-			
-			var data = {};
-			
-			data.action = 'filtrar_proyectos';
-			data.categorias = categorias;
-			data.disciplinas = disciplinas;
-			data.img_size = img_size;
-			
-			$j.ajax({  
-				type: 'POST',  
-				url: url+'/wp-admin/admin-ajax.php',  
-				data: data, 
-				success: function(data, textStatus, XMLHttpRequest){  
-					$j("#proyectos").html(data);
-					setup_grid();
-				},  
-				error: function(MLHttpRequest, textStatus, errorThrown){  
-					alert(errorThrown);  
-				}  
-			});  
-			
-			data.action = 'filtrar_proyectos_menu';
-			$j.ajax({  
-					type: 'POST',  
-					url: url+'/wp-admin/admin-ajax.php',  
-					data: data, 
-					success: function(data, textStatus, XMLHttpRequest){  
-						$j("#menu_proyectos.hide-for-small").html(data);
-					},  
-					error: function(MLHttpRequest, textStatus, errorThrown){  
-						alert(errorThrown);  
-					}  
-				});  
-				
-		}
-					
-		
-		var disciplinas = [];
-		var categorias = [];
 		
 		var disciplinasCheckboxes = $j("#disciplinas li input[type=checkbox]");
 		var categoriasCheckboxes = $j("#categorías li input[type=checkbox]");
 		var todosCheckbox = $j("#checkbox-todos input");
 		var selector_img_size = $j("#selector_img_size input");
 
-		var img_size = $j("#selector_img_size .active").attr('value');
+
+
 		
-		categoriasCheckboxes.click(function(){ 
+		categoriasCheckboxes.on('ifChecked', function(){ 
 			var name = $j(this).attr('name');
-			var checked = $j(this).is(':checked');
-			
-			if( checked && ( name == "Todas las Categorías" || name == "All Categories" ) ) {
-				
+			if( name == "Todas las Categorías" || name == "All Categories" ) {
 				categorias=[];
-				
-				$j(this).parent().siblings().find('input').each(function(i){
-					$j(this).prop('checked',true);
-					var name = $j(this).attr('name');
-					categorias.push(name);
+				$j(this).parent().parent().siblings().each(function(i){
+					$j(this).iCheck('check');
+					var new_name = $j(this).attr('name');
+					categorias.push(new_name);
 				});
-				
 			}
-			menuCheckbox( $j(this) , categorias );		
-			
+			categorias.push( name );		
+			cargar_posts();		
+		});
+		categoriasCheckboxes.on('ifUnchecked', function(){ 
+			var name = $j(this).attr('name');
+			var index = categorias.indexOf( name );
+			categorias.splice( index, 1 );
+			cargar_posts();		
+		});
+
+		
+		disciplinasCheckboxes.on('ifChecked', function(){ 
+			var name = $j(this).attr('name');
+			if( name == "Todas las Disciplinas" || name == "All Disciplines" ) {
+				disciplinas=[];			
+				$j(this).parent().parent().siblings().each(function(i){
+					$j(this).iCheck('check');
+					var new_name = $j(this).attr('name');
+					disciplinas.push(new_name);
+				});
+			}
+			disciplinas.push( name );		
+			cargar_posts();		
+		});
+		disciplinasCheckboxes.on('ifUnchecked', function(){ 
+			var name = $j(this).attr('name');
+			var index = disciplinas.indexOf( name );
+			disciplinas.splice( index, 1 );
 			cargar_posts();		
 		});
 		
-		disciplinasCheckboxes.click(function(){ 
-			var name = $j(this).attr('name');
-			var checked = $j(this).is(':checked');
-			
-			if( checked && ( name == "Todas las Disciplinas" || name == "All Disciplines" ) ){
-				$disciplinas = [];				
-
-				$j(this).parent().siblings().find('input').each(function(i){
-					$j(this).prop('checked',true);
-					var name = $j(this).attr('name');
-					disciplinas.push(name);
-				});
-
-			}
-
-			
-			menuCheckbox( $j(this) , disciplinas );				
-			cargar_posts();		
-			
-		});
 		
-		todosCheckbox.click(function(){ 
+		todosCheckbox.on('ifChecked', function(){ 
 			var name = $j(this).attr('name');
-			var checked = $j(this).is(':checked');
-
-			if(checked) {
 				
-				categorias=[];
-				
-				categoriasCheckboxes.each(function(i){
-					$j(this).prop('checked',true);
-					var name = $j(this).attr('name');
-					categorias.push(name);
-				});
+			categorias=[];
 			
-				$disciplinas = [];				
+			categoriasCheckboxes.each(function(i){
+				//~ $j(this).iCheck('check');
+				var name = $j(this).attr('name');
+				categorias.push(name);
+			});
+		
+			$disciplinas = [];				
 
-				disciplinasCheckboxes.each(function(i){
-					$j(this).prop('checked',true);
-					var name = $j(this).attr('name');
-					disciplinas.push(name);
-				});
+			disciplinasCheckboxes.each(function(i){
+				//~ $j(this).iCheck('check');
+				var name = $j(this).attr('name');
+				disciplinas.push(name);
+			});
 
-			}
-			
 			cargar_posts();		
-
 		});
 		
 		
@@ -223,11 +170,53 @@
 			$j(this).next().show();
 		});
 		
+	
+	}
 		
+	var cargar_posts = function() {
+	
+		url = $j("#url").html();
+		var ajaxloader = $j("#ajax-loader-div").html();
+		//~ $j("#proyectos").html(ajaxloader);
+		//~ $j("#menu_proyectos.hide-for-small").html('');
+		
+		
+		var data = {};
+		
+		data.action = 'filtrar_proyectos';
+		data.categorias = categorias;
+		data.disciplinas = disciplinas;
+		data.img_size = img_size;
+		
+		$j.ajax({  
+			type: 'POST',  
+			url: url+'/wp-admin/admin-ajax.php',  
+			data: data, 
+			success: function(data, textStatus, XMLHttpRequest){  
+				$j("#proyectos").html(data);
+				setup_grid();
+			},  
+			error: function(MLHttpRequest, textStatus, errorThrown){  
+				alert(errorThrown);  
+			}  
+		});  
+		
+		data.action = 'filtrar_proyectos_menu';
+		$j.ajax({  
+			type: 'POST',  
+			url: url+'/wp-admin/admin-ajax.php',  
+			data: data, 
+			success: function(data, textStatus, XMLHttpRequest){  
+				$j("#menu_proyectos.hide-for-small").html(data);
+			},  
+			error: function(MLHttpRequest, textStatus, errorThrown){  
+				alert(errorThrown);  
+			}  
+		});  
+
 			
-			
-	});
-	//~ 
+	}
+
 	
 	
 	
@@ -331,10 +320,9 @@
 		} 
 		
 		
-		var checkboxes = $j(':checkbox');
 
-
-		console.log( checkboxes );
+		
+		//~ console.log( checkboxes );
 		
 	};
 
@@ -345,6 +333,25 @@
 		resizeTimer = setTimeout( setup_grid, 50);
 	});
 
+
+
+				
+	$j(document).ready(function(){	
+		
+		img_size = $j("#selector_img_size .active").attr('value');
+		
+		setup_grid();
+		setup_checkboxes();
+	
+		
+		$j("#selector_img_size input").click(function(){
+			var img_size = $j(this).attr('value');			
+		});
+		
+		
+	}); 
+	
+	
 </script>
 			
 </html>
