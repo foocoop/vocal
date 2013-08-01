@@ -217,10 +217,10 @@ p {
 	padding: 5px 10px;
 }
 
-#menu_proyectos li:hover {
-	background-color:#eee;
-
-
+#menu_proyectos li:hover,
+#menu_proyectos li:hover a {
+	background-color:#00e2ae;
+	color:#fff;
 }
 
 
@@ -297,7 +297,10 @@ color:#343434;
  
 
 
-
+#selector_img_size,
+#boton_fullscreen {
+	text-align:right;
+}
 #selector_img_size input {
 	width:auto;
 	padding: 3px
@@ -472,10 +475,16 @@ label {
 	width:auto;
 	text-transform: uppercase;
 	margin: 0 20px;
+	padding: 5px;
+	
 }
 
 label:hover {
+	background-color:#00e2ae;
+	color:#fff;
+/*
 	color:#00e2ae;
+*/
 }
 
 /***********************************

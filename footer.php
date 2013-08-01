@@ -349,6 +349,7 @@
 			var img_size = $j(this).attr('value');			
 		});
 		
+		//~ $j('.dropdown li label').click(function(e){ e.stopPropagation(); });
 		
 	}); 
 	

@@ -509,7 +509,7 @@ function vocal_main_nav() {
 			'<input class="active" type="button" value="M">' .
 			'<input type="button" value="L">' 
 		) .		
-		foo_div( "", "small-6 large-2 columns",	'<input type="button" value="Go fullscreen" onclick="toggleFullScreen()">' )
+		foo_div( "boton_fullscreen", "small-6 large-2 columns",	'<input type="button" value="Go fullscreen" onclick="toggleFullScreen()">' )
 	);
 }
 
