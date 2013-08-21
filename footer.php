@@ -180,7 +180,9 @@
      
      url = $j("#url").html();
      var ajaxloader = $j("#ajax-loader-div").html();
-   
+
+
+   $j('#proyectos').fadeOut(500);
    var data = {};
      
      data.action = 'filtrar_proyectos';
@@ -195,7 +197,9 @@
 	      success: function(data, textStatus, XMLHttpRequest){  
 				                                  $j("#proyectos").html(data);
 				                                  setup_grid();
-			                                          },  
+                                                                  $j('#proyectos').fadeIn(1000);
+
+                	                                          },  
 	      error: function(MLHttpRequest, textStatus, errorThrown){  
 				                                      alert(errorThrown);  
 			                                              }  
@@ -206,7 +210,8 @@
 	      type: 'POST',  
 	      url: url+'/wp-admin/admin-ajax.php',  
 	      data: data, 
-	      success: function(data, textStatus, XMLHttpRequest){  
+	      success: function(data, textStatus, XMLHttpRequest){
+       
 				                                  $j("#menu_proyectos.hide-for-small").html(data);
 			                                          },  
 	      error: function(MLHttpRequest, textStatus, errorThrown){  
@@ -346,7 +351,7 @@
      $j(':checkbox').iCheck('check');
      $j('.icheckbox_vocal img').attr('width','10px');
 
-     $j('#proyectos').fadeIn();
+     setTimeout( function() { $j('#proyectos').fadeIn(1500); }, 300 );
      
    }
  ); 
