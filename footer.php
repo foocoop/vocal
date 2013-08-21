@@ -351,7 +351,7 @@
      $j(':checkbox').iCheck('check');
      $j('.icheckbox_vocal img').attr('width','10px');
 
-     setTimeout( function() { $j('#proyectos').fadeIn(1500); }, 300 );
+     setTimeout( function() { $j('#proyectos').fadeIn(800); }, 300 );
      
    }
  ); 

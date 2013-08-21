@@ -38,6 +38,10 @@
 <link rel="stylesheet" href="<?php echo themeDir(); ?>/iCheck/skins/vocal/vocal.css" />
 <script language="javascript" src="<?php echo get_stylesheet_directory_uri(); ?>/iCheck/jquery.icheck.min.js" type="text/javascript"></script>
 
+<link rel="stylesheet" href="<?php echo themeDir(); ?>/scripts/mobilyslider/css/default.css" />
+<script language="javascript" src="<?php echo get_stylesheet_directory_uri(); ?>/scripts/mobilyslider/js/mobilyslider.js" type="text/javascript"></script>
+
+
 </head>
 
 
