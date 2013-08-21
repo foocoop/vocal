@@ -23,9 +23,9 @@ get_header(); ?>
       $texto = foo_div("","texto", apply_filters('the_content', $post->post_content ) );
 
       $imgs = foo_imgs($post->ID,'full','true');
-
+      
       foreach($imgs as $img ) {
-        $items .= foo_div("","sliderItem",foo_img($img[0]));
+        $items .= foo_div("","sliderItem",foo_img($img));
       }
       
       $slider = foo_div("","slider", foo_div("","sliderContent",$items ) );
