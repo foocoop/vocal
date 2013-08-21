@@ -395,7 +395,7 @@ width:100%;
 }
 
 .post .contenido {
-	max-height:400px;
+    
 	display:inline-block;
 }
 .post .contenido .texto {
@@ -403,7 +403,7 @@ width:100%;
 /*
 	visibility:hidden;
 */
-	height:400px;
+	height:500px;
 	overflow:auto;
 	
 	margin-top:30px;

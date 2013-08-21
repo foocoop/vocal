@@ -86,13 +86,17 @@ get_header(); ?>
      );
 
     var imgW = $j('.post .imagenes').width();
-    var contH = $j('.contenido .texto').height();
+    var contH = $j('.contenido .texto').height()+ $j('.contenido .links').height() + 30;
+    
+    
     var slider = $j('.slider');
 
     slider.width( imgW );
     slider.height( contH );
     slider.children().width( imgW );
     slider.children().height( contH );
+    slider.children().find('img').height( contH );
+    slider.children().find('img').width( 'auto' );
     
     slider.mobilyslider({
        content: '.sliderContent', // class for slides container
