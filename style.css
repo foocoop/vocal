@@ -31,7 +31,7 @@ Tags: two-columns
 
 html, body { height: 100%; z-index:1; }
 
-a{ color: #18E1AF }
+a{ color: #000; }
 a:hover{ color: #0DE19F }
 /* -----------------------------------------
    Images
@@ -69,7 +69,7 @@ article .th {margin-bottom:10px; margin-bottom:1em;}
    Typography
 ----------------------------------------- */
 
-body,h1,h2,h3,h4,h5,h6,p {font-family: 'Lucida Console', Monaco, monospace, sans-serif; font-size:13px;}
+body,h1,h2,h3,h4,h5,h6,p {font-family: 'Lucida Console', Monaco, monospace, sans-serif; font-size:12px;}
 h1,h2,h3,h4,h5,h6,a:link {font-weight:300;}
 
 .site-title .subheader {margin-bottom:0;}
@@ -99,6 +99,7 @@ h1,h2,h3,h4,h5,h6,a:link {font-weight:300;}
 .site-header {border-bottom:1px solid #ddd;padding:1.5rem 0 1rem 0;margin:-1.875em 0 1.875em 0;}
 .sidebar ul li {list-style:none;}
 .top-bar-section ul li>a {border-left:1px solid #333;border-right:none;}
+
 
 /* -----------------------------------------
    Shared Styles
@@ -206,7 +207,7 @@ p {
 #menu_proyectos a {
 	color:#444;
 	text-transform: uppercase;
-	font-size:11px;
+	font-size:12px;
 }
 
 #menu_proyectos a:hover {
@@ -219,8 +220,8 @@ p {
 
 #menu_proyectos li:hover,
 #menu_proyectos li:hover a {
-	background-color:#00e2ae;
-	color:#fff;
+	//background-color:#00e2ae;
+        color: #00e2ae;
 }
 
 
@@ -229,6 +230,23 @@ p {
 	text-transform:uppercase;
 	font-size:11px;
 	font-family: 'Lucida Console', Monaco, monospace;
+}
+
+#menu-grande > div {
+    line-height:30px;
+}
+
+#menu-grande #todos.button,
+#menu-grande #full.button {
+    
+width:100%;
+}
+#menu-grande #todos.button {
+    text-align:left;
+}
+
+#menu-grande #full.button {
+    text-align:right;
 }
 
 #taxonomias li {
@@ -256,9 +274,10 @@ p {
 	font-weight:normal;
 	height:30px;
 	line-height:30px;
-	width:40%;
+	width:45%;
 	float:left;
-	padding: 0 !important;
+	
+        padding: 0 15px !important ;
 	border-color:#000;
 	background:none;
 	background-color:#fff !important;
@@ -286,28 +305,42 @@ p {
 	min-width:10px;
 }
 .button img {
-	min-width:13px;
-	width:13px;
+	min-width:12px;
+	width:12px;
 	height:15px;
 	padding:3px;
 }
+.button {
+    color:#000;
+}
 .button:hover{
-color:#343434;
+    color:#00e2ae;
 }
  
-
 
 #selector_img_size,
 #boton_fullscreen {
 	text-align:right;
 }
-#selector_img_size input {
-	width:auto;
-	padding: 3px
+
+#selector_img_size {
+
 }
 
-#selector_img_size .active{
-	font-weight:bold;
+#selector_img_size div {
+    width:40;
+    display:inline-block;
+    float:left;   
+}
+
+#selector_img_size div img {
+    width:17px !important;
+    min-width:auto;
+    margin:0 3px;
+}
+
+#selector_img_size img.active{
+    width:23px !important;
 }
 
 
@@ -384,6 +417,15 @@ color:#343434;
 	
 }
 
+.post .links li {
+    margin:7px 0;
+}
+.post .links a {
+    color:#00e2ae;
+}
+.post .links a:hover {
+    text-decoration:underline;
+}
 
 
 
@@ -428,8 +470,8 @@ li{
 label input { padding: 0;}
 */
 
-#proyectos article{
-
+#proyectos {
+    display:none;
 }
 
 
@@ -482,20 +524,17 @@ select {
 }
 
 label {
+    line-height:11px;
 	font-size:11px;
 	width:auto;
 	text-transform: uppercase;
 	margin: 0 20px;
-	padding: 5px;
+	padding: 2px 5px;
 	
 }
 
 label:hover {
-	background-color:#00e2ae;
-	color:#fff;
-/*
-	color:#00e2ae;
-*/
+        color:#00e2ae;
 }
 
 /***********************************
