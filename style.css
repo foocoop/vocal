@@ -437,6 +437,8 @@ width:100%;
 .post .imagenes iframe,
 .post .imagenes object {
     width:80%;
+    margin-left:10%;
+    height:100%;
 }
 
 
