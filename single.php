@@ -96,7 +96,7 @@ get_header(); ?>
     slider.children().width( imgW );
     slider.children().height( contH );
     slider.children().find('img').height( contH );
-    slider.children().find('img').width( 'auto' );
+    slider.children().find('img').css({width: 'auto'});
     
     slider.mobilyslider({
        content: '.sliderContent', // class for slides container
