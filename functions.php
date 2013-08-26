@@ -472,17 +472,7 @@ function foundation_comment( $comment, $args, $depth ) {
     require_once("footilities/funcionesHTML.php");
 
 
-
-
-
-
-
-
-
-
-
-
-
+    
     function remove_menus () {
       global $menu;
       $restricted = array(__('Dashboard'), __('Posts'), __('Media'), __('Links'),/*__('Pages'), __('Appearance'),*/ __('Tools'),/* __('Users'), __('Settings'),*/ __('Comments'), __('Plugins'));
@@ -595,27 +585,6 @@ function foundation_comment( $comment, $args, $depth ) {
 
 
     add_theme_support( 'post-thumbnails' );
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    require_once("cpt/proyecto.php");
-    require_once("cpt/metabox.php");
-    require_once("utilidades/funcionesHTML.php");
-
-
-
-
 
 
 
