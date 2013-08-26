@@ -15,10 +15,12 @@ if(have_posts() ) : the_post;
 	//~ foreach ($imagenes as $imagen) {
 		//~ $images.=foo_img($imagen[0]);
 	//~ }
-	$index =  array_rand( $imagenes );
-$imgurl = $imagenes[ $index ];
 
-//	$imgurl = $imgurl[ 0 ];
+$imgurl = NULL;
+while ( $imgurl == NULL ) {
+  $index =  array_rand( $imagenes );
+  $imgurl = $imagenes[ $index ];
+}
 	$image = foo_img( $imgurl );
 	$content = foo_strip(foo_strip($content,'img'),'a');
 	
@@ -34,7 +36,7 @@ $imgurl = $imagenes[ $index ];
 	
 
 	echo foo_div("","fullscreen",$image);
-	echo foo_div("texto_portada","content portada large-5  columns", foo_curtain("", $echo ) );
+	echo foo_div("texto_portada","content portada large-5  columns", $echo);
 	
 endif;
 ?>
