@@ -11,13 +11,14 @@ if(have_posts() ) : the_post;
 	$content = foo_filter($post->post_content,'content');
 	$images="";
 	$imagenes = foo_imgs( $post->ID , 'full' );
-	
+
 	//~ foreach ($imagenes as $imagen) {
 		//~ $images.=foo_img($imagen[0]);
 	//~ }
 	$index =  array_rand( $imagenes );
-	$imgurl = $imagenes[ $index ];
-	$imgurl = $imgurl[ 0 ];
+$imgurl = $imagenes[ $index ];
+
+//	$imgurl = $imgurl[ 0 ];
 	$image = foo_img( $imgurl );
 	$content = foo_strip(foo_strip($content,'img'),'a');
 	

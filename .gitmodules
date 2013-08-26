@@ -1,3 +1,6 @@
 [submodule "iCheck"]
 	path = iCheck
 	url = https://github.com/foocoop/iCheck.git
+[submodule "footilities"]
+	path = footilities
+	url = https://furenku@github.com/foocoop/footilities.git

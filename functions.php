@@ -1,3 +1,4 @@
+
 <?php
 
 global $archiveLayout;
@@ -468,7 +469,7 @@ function foundation_comment( $comment, $args, $depth ) {
 
     require_once("cpt/proyecto.php");
     require_once("cpt/metabox.php");
-    require_once("utilidades/funcionesHTML.php");
+    require_once("footilities/funcionesHTML.php");
 
 
 
