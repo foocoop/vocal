@@ -400,10 +400,11 @@ width:100%;
 }
 .post .contenido .texto {
 	display:inline-block;
-/*
-	visibility:hidden;
-*/
-	height:500px;
+	
+	/*visibility:hidden;*/
+	height:550px;
+	
+	
 	overflow:auto;
 	
 	margin-top:30px;
@@ -431,7 +432,7 @@ width:100%;
 
 
 .post .imagenes {
-    min-height:500px;
+    /* min-height:500px; */
 }
 
 .post .imagenes iframe,

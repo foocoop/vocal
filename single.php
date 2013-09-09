@@ -95,8 +95,15 @@ get_header(); ?>
     slider.height( contH );
     slider.children().width( imgW );
     slider.children().height( contH );
-    slider.children().find('img').height( contH );
-    slider.children().find('img').css({width: 'auto'});
+    /*slider.children().find('img').height( contH ); 
+    slider.children().find('img').css({width: 'auto'});*/
+    
+    slider.children().find('img').resizecrop({
+       width:imgW,
+       height:contH,
+       vertical:"middle"
+    }); 
+
     
     slider.mobilyslider({
        content: '.sliderContent', // class for slides container

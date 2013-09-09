@@ -41,6 +41,7 @@
 <link rel="stylesheet" href="<?php echo themeDir(); ?>/scripts/mobilyslider/css/default.css" />
 <script language="javascript" src="<?php echo get_stylesheet_directory_uri(); ?>/scripts/mobilyslider/js/mobilyslider.js" type="text/javascript"></script>
 
+<script language="javascript" src="<?php echo get_stylesheet_directory_uri(); ?>/scripts/resize/jquery.resizecrop-1.0.3.min.js" type="text/javascript"></script>
 
 </head>
 
