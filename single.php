@@ -97,13 +97,16 @@ get_header(); ?>
     slider.children().height( contH );
     /*slider.children().find('img').height( contH ); 
     slider.children().find('img').css({width: 'auto'});*/
-    
-    slider.children().find('img').resizecrop({
+
+
+    $j('.sliderItem img').hide();
+    $j('.sliderItem img').resizecrop({
        width:imgW,
        height:contH,
        vertical:"middle"
-    }); 
-
+     });
+    $j('.sliderItem img').fadeIn();
+    
     
     slider.mobilyslider({
        content: '.sliderContent', // class for slides container

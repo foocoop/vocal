@@ -559,14 +559,22 @@ label:hover {
 	display:block;
 	z-index:-1;
 }
+.fullscreen_hidden img,
 .fullscreen img {
-	height: 100%;
-/*
-	width: 100%;
-*/
-	display:block;
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    
+    /* Preserve aspet ratio */
+    min-width: 100%;
+    min-height: 100%;
 }
-
+.fullscreen_hidden {
+    visibility:hidden;
+    position:fixed;
+    width:auto;
+    height:auto;
+}
 .portada .content {
 	display:none;
 }
@@ -579,8 +587,8 @@ label:hover {
     padding:20px;
     margin:50px;
     background-color:#fff;
-    width: 30%;
-    height: 15%;
+    
+    height: auto;
     text-transform:uppercase;
 }
 
@@ -682,4 +690,9 @@ input[type="button"]{
     height:100%;
     position:absolute;
     background:#fff;
+}
+
+
+.sliderItem img {
+    display:none;
 }

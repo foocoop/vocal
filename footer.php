@@ -324,12 +324,66 @@
        
      } 
      
-     
 
-     
-     //~ console.log( checkboxes );
-     
-   };
+   
+   var imgW = $j('.post .imagenes').width();
+   var contH = $j('.contenido .texto').height()+ $j('.contenido .links').height() + 30;
+   
+   
+   var slider = $j('.slider');
+
+   slider.width( imgW );
+   slider.children().width( imgW );
+   slider.children().width( imgW );
+
+   var img = slider.find('img');
+
+   img.hide();
+
+
+
+   var doc_width = slider.width();
+   var doc_height = slider.height();
+   // alert("Step 1: getting document size\n\nWidth: "+doc_width+"px\nHeight = "+doc_height+"px");
+   var image_width = img.width();
+   var image_height = img.height();
+   // alert("Step 2: getting image size\n\nWidth: "+image_width+"px\nHeight = "+image_height+"px");
+   var image_ratio = image_width/image_height;
+   // alert("Step 3: getting image width/height ratio: "+image_ratio);       
+   var new_width = doc_width;
+   var new_height = Math.round(new_width/image_ratio);
+   // alert("Step 4: adapting the image to document width, mantaining the ratio\n\nWidth: "+new_width+"px\nHeight = "+new_height+"px");
+   img.width(new_width);
+   img.height(new_height);
+   if(new_height<doc_height){
+     new_height = doc_height;
+     new_width = Math.round(new_height*image_ratio);
+     // alert("Step 5: the image isn't high enough\n\nAdapting the image to document height, mantaining the ratio\n\nWidth: "+new_width+"px\nHeight = "+new_height+"px");
+     img.width(new_width);
+     img.height(new_height);
+     var width_offset = Math.round((new_width-doc_width)/2);
+     // alert("Step 6: moving the image left by "+width_offset+"px to have it centered");
+     if( img.offset().left + new_width < doc_width){
+       img.width(doc_width);
+       img.height( Math.round(doc_width/image_ratio) );
+     }
+
+
+     img.css("left","-"+width_offset+"px");
+   }
+
+   img.show();
+   
+   /* img.resizecrop({
+   width:imgW,
+   height:contH,
+   vertical:"middle"
+   });
+   
+   $j('.sliderItem img').fadeIn();
+    */
+   
+ };
 
    var resizeTimer;
    
@@ -350,7 +404,18 @@
      setup_checkboxes();
      $j(':checkbox').iCheck('check');
      $j('.icheckbox_vocal img').attr('width','10px');
+     $j('.fullscreen img').hide();
+     var wW = $j(window).width();
+     var wH = $j(window).height();
+     
+     var newImg = $j('.fullscreen_hidden img').clone().resizecrop({
+       width:wW,
+       height:wH,
+       vertical:"middle"
+     });
 
+     $j('.fullscreen img').html( newImg );
+     $j('.fullscreen img').fadeIn();
      
      setTimeout( function() { $j('#proyectos').fadeIn(800); }, 300 );
      
