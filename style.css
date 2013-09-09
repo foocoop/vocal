@@ -357,7 +357,7 @@ width:100%;
 
 
 #content,.content{
-	height: 100%;
+    /* height: 100%; */
 }
 
 #content .post > div {
