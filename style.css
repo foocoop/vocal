@@ -30,7 +30,7 @@ Tags: two-columns
 
 
 html, body { height: 100%; z-index:1; }
-body { overflow:hidden; }
+body { overflow:auto; }
 a{ color: #000; }
 a:hover{ color: #0DE19F }
 /* -----------------------------------------
