@@ -334,8 +334,7 @@
 
    slider.width( imgW );
    slider.children().width( imgW );
-   slider.children().width( imgW );
-
+   
    var img = slider.find('img');
 
    img.hide();
