@@ -555,7 +555,7 @@ function foundation_comment( $comment, $args, $depth ) {
       $taxs = get_terms( $tax_name, array( "hide_empty" => 0 ) );
       //~ $result = '<select id="'.$tax_name.'">';
       
-      $opciones .= foo_li( "", "checkbox", '<input type="checkbox" id="'.$todas.'" name="'.$todas.'"><label for="'.$nombre.'">'.$todas.'</label>');
+      //$opciones .= foo_li( "", "checkbox", '<input type="checkbox" id="'.$todas.'" name="'.$todas.'"><label for="'.$nombre.'">'.$todas.'</label>');
       foreach ($taxs as $tax) {
 	$nombre = $tax -> name;
         $opciones .=  foo_li( "", "checkbox", '<input type="checkbox" id="'.$nombre.'" name="'.$nombre.'"><label for="'.$nombre.'">' . $nombre . '</label>' );

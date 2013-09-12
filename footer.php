@@ -90,15 +90,15 @@
    var todosCheckbox = $j("#checkbox-todos input");
    var selector_img_size = $j("#selector_img_size a img");
 
+   var cats_on = $j('#cats_on');
+   var discs_on = $j('#cats_on');
 
-
-   
    categoriasCheckboxes.on('ifChecked', function(){ 
 			                           var name = $j(this).attr('name');
 			                           if( name == "Todas las Categorías" || name == "All Categories" ) {
        categorias=[];
        $j(this).parent().parent().siblings().each(function(i){
-	 $j(this).iCheck('check');
+	 //$j(this).iCheck('check');
 	 var new_name = $j(this).attr('name');
 	 categorias.push(new_name);
        });
@@ -174,156 +174,156 @@
      $j(this).next().show();
    });
 
-   }
+ }
+ 
+ var cargar_posts = function() {
    
-   var cargar_posts = function() {
-     
-     url = $j("#url").html();
-     var ajaxloader = $j("#ajax-loader-div").html();
+   url = $j("#url").html();
+   var ajaxloader = $j("#ajax-loader-div").html();
 
 
    $j('#proyectos').fadeOut(500);
    var data = {};
-     
-     data.action = 'filtrar_proyectos';
-     data.categorias = categorias;
-     data.disciplinas = disciplinas;
-     data.img_size = img_size;
-     
+   
+   data.action = 'filtrar_proyectos';
+   data.categorias = categorias;
+   data.disciplinas = disciplinas;
+   data.img_size = img_size;
+   
    $j.ajax({  
 	    type: 'POST',
-	      url: url+'/wp-admin/admin-ajax.php',  
-	      data: data, 
-	      success: function(data, textStatus, XMLHttpRequest){  
-				                                  $j("#proyectos").html(data);
-				                                  setup_grid();
-                                                                  $j('#proyectos').fadeIn(1000);
+	    url: url+'/wp-admin/admin-ajax.php',  
+	    data: data, 
+	    success: function(data, textStatus, XMLHttpRequest){  
+				                                $j("#proyectos").html(data);
+				                                setup_grid();
+                                                                $j('#proyectos').fadeIn(1000);
 
-                	                                          },  
-	      error: function(MLHttpRequest, textStatus, errorThrown){  
-				                                      alert(errorThrown);  
-			                                              }  
-	      });  
-     
-     data.action = 'filtrar_proyectos_menu';
-     $j.ajax({  
-	      type: 'POST',  
-	      url: url+'/wp-admin/admin-ajax.php',  
-	      data: data, 
-	      success: function(data, textStatus, XMLHttpRequest){
+                	                                        },  
+	    error: function(MLHttpRequest, textStatus, errorThrown){  
+				                                    alert(errorThrown);  
+			                                            }  
+	    });  
+   
+   data.action = 'filtrar_proyectos_menu';
+   $j.ajax({  
+	    type: 'POST',  
+	    url: url+'/wp-admin/admin-ajax.php',  
+	    data: data, 
+	    success: function(data, textStatus, XMLHttpRequest){
        
-				                                  $j("#menu_proyectos.hide-for-small").html(data);
-			                                          },  
-	      error: function(MLHttpRequest, textStatus, errorThrown){  
-				                                      alert(errorThrown);  
-			                                              }  
-	      });  
-
-     
-   }
+       $j("#menu_proyectos.hide-for-small").html(data);
+     },  
+	    error: function(MLHttpRequest, textStatus, errorThrown){  
+				                                    alert(errorThrown);  
+			                                            }  
+	    });  
 
    
+ }
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ function clearClasses(object){
    
+   object.removeClass('large-1');
+   object.removeClass('large-2');
+   object.removeClass('large-3');
+   object.removeClass('large-4');
+   object.removeClass('large-6');
+   object.removeClass('large-12');
+ }
+ 
+ var getClosestValues = function(a, x) {
+   var lo, hi;
+   for (var i = a.length; i--;) {
+     if (a[i] <= x && (lo === undefined || lo < a[i])) lo = a[i];
+     if (a[i] >= x && (hi === undefined || hi > a[i])) hi = a[i];
+   };
+   return [lo, hi];
+ }
+ 
+ function setup_grid() {
    
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   function clearClasses(object){
-     
-     object.removeClass('large-1');
-     object.removeClass('large-2');
-     object.removeClass('large-3');
-     object.removeClass('large-4');
-     object.removeClass('large-6');
-     object.removeClass('large-12');
-   }
-   
-   var getClosestValues = function(a, x) {
-     var lo, hi;
-     for (var i = a.length; i--;) {
-       if (a[i] <= x && (lo === undefined || lo < a[i])) lo = a[i];
-       if (a[i] >= x && (hi === undefined || hi > a[i])) hi = a[i];
-     };
-     return [lo, hi];
-   }
-   
-   function setup_grid() {
-     
-     var img_size = $j("#selector_img_size .active").attr('id');
+   var img_size = $j("#selector_img_size .active").attr('id');
 
 
-     var width = $j(window).width();
-     //~ alert(width);	
-     
-     var new_width = width*0.97;
-     var principal = $j('#principal').width( new_width );
-     
-     principal.children().width(new_width);
-     var proyectos = $j('#proyectos .proyecto');
-     var large_class;
-     clearClasses(proyectos);
-     //~ 
-     //~ 
-     var possible =[ 12, 6, 4, 3, 2, 1 ];
-     var segments = [ 896, 1024, 1152, 1280, 1368, 1496 ];
-     var sizes = [];
-     
-     sizes["L"] = { options : [ 6, 4, 3 ], 	small_cols : 6 }
-     sizes["M"] = { options : [ 4, 3, 2 ],	small_cols : 4 }
-     sizes["S"] = { options : [ 3, 2, 1 ], 	small_cols : 3 }
+   var width = $j(window).width();
+   //~ alert(width);	
+   
+   var new_width = width*0.97;
+   var principal = $j('#principal').width( new_width );
+   
+   principal.children().width(new_width);
+   var proyectos = $j('#proyectos .proyecto');
+   var large_class;
+   clearClasses(proyectos);
+   //~ 
+   //~ 
+   var possible =[ 12, 6, 4, 3, 2, 1 ];
+   var segments = [ 896, 1024, 1152, 1280, 1368, 1496 ];
+   var sizes = [];
+   
+   sizes["L"] = { options : [ 6, 4, 3 ], 	small_cols : 6 }
+   sizes["M"] = { options : [ 4, 3, 2 ],	small_cols : 4 }
+   sizes["S"] = { options : [ 3, 2, 1 ], 	small_cols : 3 }
 
-     var size = sizes[ img_size ];
-     
-     if( typeof( size )!="undefined")	{
+   var size = sizes[ img_size ];
+   
+   if( typeof( size )!="undefined")	{
 
-       if ( width > segments[ size.options.length - 1 ]) {
-	 col_num = size.options[ size.options.length - 1 ];
-       } else if ( width < segments[ 0 ] ) {
-	 col_num = size.options[ 0 ];
+     if ( width > segments[ size.options.length - 1 ]) {
+       col_num = size.options[ size.options.length - 1 ];
+     } else if ( width < segments[ 0 ] ) {
+       col_num = size.options[ 0 ];
+     }
+     else {
+       var closest = getClosestValues( segments, width )[0];
+       var index;
+       if( typeof(closest) == "undefined" ){
+	 closest = 0;
        }
-       else {
-	 var closest = getClosestValues( segments, width )[0];
-	 var index;
-	 if( typeof(closest) == "undefined" ){
-	   closest = 0;
-	 }
-	 var index_segment = segments.indexOf( closest  );
+       var index_segment = segments.indexOf( closest  );
 
-	 var index;
-	 if( index_segment < 0 )
-	 index = 0;
-	 else if ( index_segment > size.options.length )
-	 index = size.options.length - 1;
-	 else 
-	 index = index_segment;
-	 
-	 col_num = size.options[ index ];
-	 
+       var index;
+       if( index_segment < 0 )
+       index = 0;
+       else if ( index_segment > size.options.length )
+       index = size.options.length - 1;
+       else 
+       index = index_segment;
+       
+       col_num = size.options[ index ];
+       
 
-       }
-       
-       large_class = 'large-' + col_num;
-       small_class = 'small-' + size.small_cols;
-       
-       proyectos.addClass( large_class );
-       proyectos.addClass( small_class );
-       
-     } 
+     }
      
+     large_class = 'large-' + col_num;
+     small_class = 'small-' + size.small_cols;
+     
+     proyectos.addClass( large_class );
+     proyectos.addClass( small_class );
+     
+   } 
+   
 
    
    var imgW = $j('.post .imagenes').width();
@@ -384,16 +384,16 @@
    
  };
 
-   var resizeTimer;
-   
-   $j(window).resize(function() {
-     clearTimeout(resizeTimer);
-     resizeTimer = setTimeout( setup_grid, 50);
-   });
+ var resizeTimer;
+ 
+ $j(window).resize(function() {
+   clearTimeout(resizeTimer);
+   resizeTimer = setTimeout( setup_grid, 50);
+ });
 
 
 
-   
+ 
  $j(document).ready(
    function(){
      
@@ -401,7 +401,56 @@
      
      setup_grid();
      setup_checkboxes();
-     $j(':checkbox').iCheck('check');
+
+     var cats_on = $j('#cats_on');
+     var discs_on = $j('#discs_on');
+     
+     if( cats_on.length !== 0 ) {
+       var taxLis = cats_on.find('li');
+       $j('#categorías .checkbox').each(function(){
+         var chk = $j(this);
+         var chkstr = chk.find('label').html();
+         
+         var found = false;
+
+         taxLis.each(function() {
+           li = $j(this);
+           if( chkstr.toLowerCase() == li.html().toLowerCase() ) {
+             found = true;
+           }
+         });
+         if( found ) {
+          chk.find(':checkbox').iCheck('check');
+         }
+         //iCheck('check');
+       });
+     }
+     
+     
+     if( discs_on.length !== 0 ) {
+       var taxLis = discs_on.find('li');
+       $j('#disciplinas .checkbox').each(function(){
+         var chk = $j(this);
+         var chkstr = chk.find('label').html();
+         
+         var found = false;
+
+         taxLis.each(function() {
+           li = $j(this);
+           if( chkstr.toLowerCase() == li.html().toLowerCase() ) {
+             found = true;
+           }
+         });
+         if( found ) {
+           chk.find(':checkbox').iCheck('check');
+         }
+         //iCheck('check');
+       });
+     }
+     
+
+
+
      $j('.icheckbox_vocal img').attr('width','10px');
      $j('.fullscreen img').hide();
      var wW = $j(window).width();
@@ -421,7 +470,7 @@
    }
  ); 
  
-   
+ 
 </script>
 
 </html>

@@ -47,6 +47,26 @@ get_header(); ?>
 
       echo foo_div("hiddendiv","hidden", foo_div("","sliderItem","item") );
       
+      $cats =  get_the_category();
+      
+      if( count($cats)>0 ) {
+        
+        foreach($cats as $cat) {
+        
+          $catStr .= foo_li("","cat",$cat->name);
+        }
+      }
+
+      $discs = get_the_terms( get_the_ID(), "disciplina");
+
+      if( count($discs)>0 ) {
+        foreach($discs as $disc) {
+          $discStr .= foo_li("","disc",$disc->name);
+        }
+      }
+      
+      echo foo_div("cats_on","hidden",$catStr);
+      echo foo_div("discs_on","hidden",$discStr);
       
       endwhile;
       endif;
@@ -71,7 +91,8 @@ get_header(); ?>
     txt.fadeIn();
 
 
-
+    var cats = $j('#cats');
+    
     var iframes = $j('iframe');
     var sliderItem = $j('#hiddendiv .sliderItem');
 
