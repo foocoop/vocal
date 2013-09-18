@@ -79,8 +79,12 @@ get_header(); ?>
 
  var slider = $j('.slider');
 
- var resize_img = function() {
+ var resize = function() {
 
+   var cont = $j('.contenido');
+
+   cont.height( $j(window).height() * 0.9 );
+   $j('.contenido .texto').height( cont.height() - $j('.contenido .links').height() - 60 );
 
    
    var imgW = $j('.post .imagenes').width();
@@ -190,7 +194,7 @@ get_header(); ?>
  
  $j(window).resize(function() {
    clearTimeout(resizeTimer);
-   resizeTimer = setTimeout( resize_img, 50);
+   resizeTimer = setTimeout( resize, 50);
  });
 
 
@@ -223,7 +227,7 @@ get_header(); ?>
        }
      );
 
-    resize_img();
+    resize();
 
     slider.mobilyslider({
        content: '.sliderContent', // class for slides container
