@@ -503,22 +503,24 @@ function foundation_comment( $comment, $args, $depth ) {
       $full = foo_link( foo_div("full","button","Pantalla Completa"),"#","toggleFullScreen()");
       
       $menu = foo_div( "checkbox-todos", "small-6 large-2 columns", $todos  );
-      $menu .= foo_div("taxonomias","small-6 large-4 columns", $tax);
+
+      $menu .= foo_div("taxonomias","small-12 large-4 columns", $tax);
 
       /* $menu .= foo_div("taxonomias","small-6 large-2 columns", taxonomyDropdown('disciplina') );
       $menu .= foo_div("taxonomias","small-6 large-2 columns", taxonomyDropdown('category') ); */
 
       $menu .= foo_div( "", "small-6 large-2 columns", 'ENGLISH ESPAÑOL' ); // qtrans_generateLanguageSelectCode('text') ) .
       $menu .= foo_div( "selector_img_size", "large-2 small-6 columns", $sel_img );
-      $menu .= foo_div( "boton_fullscreen", "small-6 large-2 columns", $full );
+      $menu .= foo_div( "boton_fullscreen", "hide-for-small large-2 columns", $full );
 
-      echo foo_div("menu-grande","vocal_menu hide-for-small row", $menu );
+      echo foo_div("menu-grande","vocal_menu row", $menu );
     }
     
 
     
     function vocal_portada_nav() {
       echo foo_div("menu-grande","vocal_menu hide-for-small row",
+      
 
 		   foo_div( "", "small-6 large-2 columns",	'' ) .
 		            foo_div( "", "small-6 large-2 columns",	'' ) .
@@ -528,7 +530,7 @@ function foundation_comment( $comment, $args, $depth ) {
 		                                                foo_div( "", "small-6 large-2 columns",	'<input type="button" value="Pantalla Completa" onclick="toggleFullScreen()">' )
 	           );
     }
-
+/*
     function vocal_mobile_nav() {	
 	                         echo foo_div("menu-grande","vocal_menu show-for-small row",
 		                              foo_div( "", "small-6 large-2 columns",	taxonomyDropdown('disciplina') ) .
@@ -536,7 +538,7 @@ function foundation_comment( $comment, $args, $depth ) {
 		                                                                                                                                                         foo_div( "", "small-6 large-2 columns",	'<input type="button" value="Go fullscreen" onclick="toggleFullScreen()">' )
 	                                      );
                                  }
-
+*/
 
 
 
