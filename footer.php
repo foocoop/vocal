@@ -85,8 +85,8 @@
      increaseArea: '0%' // optional
    });
    
-   var disciplinasCheckboxes = $j("#disciplinas li input[type=checkbox]");
-   var categoriasCheckboxes = $j("#categorías li input[type=checkbox]");
+   var disciplinasCheckboxes = $j("#disciplinas_menu li input[type=checkbox]");
+   var categoriasCheckboxes = $j("#categorias_menu li input[type=checkbox]");
    var todosCheckbox = $j("#checkbox-todos input");
    var selector_img_size = $j("#selector_img_size a img");
 
