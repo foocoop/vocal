@@ -72,7 +72,7 @@ endif;
      function resizeImage() {
 
        
-       var img =  ('.fullscreen img');
+       var img =  $('.fullscreen img');
        var doc_width = $j(window).width();
        var doc_height = $j(window).height();
        // alert("Step 1: getting document size\n\nWidth: "+doc_width+"px\nHeight = "+doc_height+"px");

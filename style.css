@@ -159,7 +159,8 @@ body > .row {
 }
 
 h1,h2,h3,h4,h5{
-	font-family: 'alte_haas_groteskregular';
+    font-family: 'Lucida Console', Monaco, monospace, sans-serif;
+    font-weight:bold;
 }
 
 
@@ -215,7 +216,8 @@ p {
 }
 
 #menu_proyectos li {
-	padding: 5px 10px;
+    padding: 5px 10px;
+    margin: 0 10px;
 }
 
 #menu_proyectos li:hover,
@@ -226,6 +228,7 @@ p {
 
 
 #menu-grande {
+    margin: 15px 0;
 	display:inline-block;
 	text-transform:uppercase;
 	font-size:11px;
@@ -240,7 +243,7 @@ p {
 
 #menu-grande #todos.button,
 #menu-grande #full.button {
-    
+border:none;    
 width:100%;
 }
 #menu-grande #todos.button {
@@ -251,24 +254,54 @@ width:100%;
     text-align:right;
 }
 
-#taxonomias li {
-	margin:2px;
-	padding:2px;
-	width:100%;
-	display:block;
-	height:20px;
+#taxonomias {
+    
+}
+
+.taxonomia {
+    width:45%;
+    margin-right:5%;
+    float:left;
+    display:inline-block;
+}
+
+.taxonomia .button {
+    /* width:100%; */
+}
+
+
+.taxonomia li {
+    width:100%;
+    margin:2px;
+    padding:2px;
+    /* width:40%; */
+    display:block;
+    height:20px;
+}
+
+
+.dropdown_container{
+    position:relative;
+    float:left;
+}
+.dropdown_container > div {
+    width:100%;
 }
 .dropdown {
+    position:absolute;
+    display:none;
+    background-color:#fff;
+    border:1px solid black;
+    z-index:9999;
+    margin-top: 28px;
+    top:0;
+    width:38%;
+    font-size:10px;
+/*
 	display: block;
 	left: -99999px;
 	position: absolute;
-	top: 28px;
-	background-color:#fff;
-	z-index:1000;
-	width:38%;
-	margin-left:-50%;
-	border:1px solid black;
-	font-size:10px;
+	*/
 }
 
 .button {
@@ -279,7 +312,7 @@ width:100%;
 	width:45%;
 	float:left;
 	
-        padding: 0 15px !important ;
+        padding: 0 10px !important ;
 	border-color:#000;
 	background:none;
 	background-color:#fff !important;
@@ -305,12 +338,12 @@ width:100%;
 	width:15%;
 	height:15px;
 	min-width:10px;
+	padding-top:3px;
 }
 .button img {
 	min-width:12px;
 	width:12px;
 	height:15px;
-	padding:3px;
 }
 .button {
     color:#000;
@@ -318,9 +351,12 @@ width:100%;
 .button:hover{
     color:#00e2ae;
 }
- 
 
+
+
+#qtrans,
 #selector_img_size,
+#selector_img_size div,
 #boton_fullscreen {
 	text-align:right;
 }
@@ -332,7 +368,7 @@ width:100%;
 #selector_img_size div {
     width:40;
     display:inline-block;
-    float:left;   
+    
 }
 
 #selector_img_size div img {
@@ -494,11 +530,17 @@ label input { padding: 0;}
     display:none;
 }
 
-
+#proyectos article header .vcenter_content {
+    text-align: center;
+}
 #proyectos article header {
 	visibility:hidden;
 	position:absolute;
 	height:100%;
+	width:80%;
+	margin:0;
+	padding: 0;
+	text-align: center;
 	text-transform:uppercase;
 	font-weight:bold;
 }
@@ -594,11 +636,25 @@ label:hover {
 	padding:3% !important;
 }
 #texto_portada{
-    border: 2px solid #000;
-    padding:20px;
-    margin:50px;
-    background-color:#fff;
+    /* IE 8 */
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
+    /* IE 7-7 */
+    filter: alpha(opacity=70);
+    /* Netscape */
+    -moz-opacity: 0.7;
+    /* Safari 1.x */
+    -khtml-opacity: 0.7;
+    /* Good browsers */
+    opacity: 0.7;
     
+    background-color:#fff;
+
+    
+    border: 1px solid #000;
+    padding:20px;
+    margin:-45px 50px;
+    background-color:#fff;
+    position:absolute;
     height: auto;
     text-transform:uppercase;
 }
@@ -610,8 +666,8 @@ label:hover {
 }
 #texto_portada #entrar  {
 	background-color:#fff;
-	width:25%;
-	padding:5px;
+	width:100%;
+	padding:5px 0;
 }
 #texto_portada #entrar .flecha {
 	min-width:25px;
@@ -624,7 +680,26 @@ label:hover {
 	float:left;
 }
 
+#full_portada {
+    margin-top:50px;
+    margin-right: 50px;
+    /* padding:20px; */
+    background-color:white;
+    border:1px solid black;
 
+    /* IE 8 */
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
+    /* IE 7-7 */
+    filter: alpha(opacity=70);
+    /* Netscape */
+    -moz-opacity: 0.7;
+    /* Safari 1.x */
+    -khtml-opacity: 0.7;
+    /* Good browsers */
+    opacity: 0.7;
+
+    text-align: center;
+}
 
 
 .archive .large-1 {
@@ -640,7 +715,7 @@ label:hover {
 
 .curtain {		
 /*
-	opacity:1;
+	opacitytext:1;
 */
 	background-color:#FFF;
 }
@@ -730,5 +805,12 @@ input[type="button"]{
 }
 
 
+
+
+.post .titulo h3 {
+    font-family: 'Lucida Console', Monaco, monospace, sans-serif;
+    font-size: 22px;
+    font-weight:bold;
+}
 
 

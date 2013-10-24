@@ -170,8 +170,8 @@
    
    
    
-   $j(".taxonomias.button").click(function(){
-     $j(this).next().show();
+   $j(".taxonomia .button").click(function(){
+   $j(this).next().toggle();
    });
 
  }
@@ -410,7 +410,20 @@
      $j('.fullscreen img').fadeIn();
      
      setTimeout( function() { $j('#proyectos').fadeIn(800); }, 300 );
-     
+
+
+
+     var proyectos = $j('#proyectos article');
+
+     proyectos.each(function(){
+
+       var proyecto = $j(this);
+
+       var mL = proyecto.css('paddingLeft');
+
+       proyecto.css('paddingBottom', mL);
+       console.log(mL);
+     });
    }
  ); 
  

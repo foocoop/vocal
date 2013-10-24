@@ -489,10 +489,15 @@ function foundation_comment( $comment, $args, $depth ) {
     
     function vocal_main_nav() {
 
-      $todos = foo_link( foo_div("todos","button","Todos los proyectos"), site_url() . '/?post_type=proyecto' );
+      $todos = foo_link( foo_div("todos","button","Proyectos"), site_url() . '/?post_type=proyecto' );
     
+      /*
       $tax = taxonomyDropdown('disciplina');
       $tax .= taxonomyDropdown('category');
+      */
+
+      $disc = taxonomyDropdown('disciplina');
+      $cats .= taxonomyDropdown('category');
 
       $sel_img = foo_div("","titulo",'Imágenes:');
       $sel_imgs = foo_link( '<img id="S" src="'. themeDir() . '/img/imgbtns/s.png"/>', "#");
@@ -504,12 +509,19 @@ function foundation_comment( $comment, $args, $depth ) {
       
       $menu = foo_div( "checkbox-todos", "small-6 large-2 columns", $todos  );
 
+      /*
       $menu .= foo_div("taxonomias","small-12 large-4 columns", $tax);
+       */
+      
+      $taxs = foo_div( "disciplinas_menu", "taxonomia", $disc );//"taxonomias small-6 large-2 columns", $disc);
+      $taxs .= foo_div( "categorias_menu", "taxonomia", $cats );//"taxonomias small-6 large-2 columns", $cats);
 
+      $menu .= foo_div("taxonomias", "large-4 columns", $taxs);
+      
       /* $menu .= foo_div("taxonomias","small-6 large-2 columns", taxonomyDropdown('disciplina') );
       $menu .= foo_div("taxonomias","small-6 large-2 columns", taxonomyDropdown('category') ); */
 
-      $menu .= foo_div( "", "small-6 large-2 columns", 'ENGLISH ESPAÑOL' ); // qtrans_generateLanguageSelectCode('text') ) .
+      $menu .= foo_div( "qtrans", "small-6 large-2 columns", 'ENGLISH ESPAÑOL' ); // qtrans_generateLanguageSelectCode('text') ) .
       $menu .= foo_div( "selector_img_size", "large-2 small-6 columns", $sel_img );
       $menu .= foo_div( "boton_fullscreen", "hide-for-small large-2 columns", $full );
 
@@ -527,7 +539,7 @@ function foundation_comment( $comment, $args, $depth ) {
 		                     foo_div( "", "small-6 large-2 columns",	'' ) .
 		                              foo_div( "", "small-6 large-2 columns",	'' ) .
 		                                       foo_div( "", "small-6 large-2 columns",	'' ) .
-		                                                foo_div( "", "small-6 large-2 columns",	'<input type="button" value="Pantalla Completa" onclick="toggleFullScreen()">' )
+		                                                foo_div( "full_portada", "small-6 large-2 columns",	'<input type="button" value="Pantalla Completa" onclick="toggleFullScreen()">' )
 	           );
     }
 /*
@@ -567,8 +579,10 @@ function foundation_comment( $comment, $args, $depth ) {
       
       
       
-      $titulo .=	'<div class="button" data-dropdown="'
-	       . strtolower( $plural[$tax_name] ).'">'
+      $titulo .= '<div class="button" '
+               //. 'data-dropdown="'
+	       //. strtolower( $plural[$tax_name] ).'">'
+               .'>'
 			   . foo_div("","titulo", $plural[ $tax_name ] )
 				    . foo_div("","img", foo_img( themeDir() . '/img/flechaAbajo.png' ) )
 				                                         . '</div>';
@@ -578,14 +592,14 @@ function foundation_comment( $comment, $args, $depth ) {
       
       $dropdown = $titulo
 		. '<div id="' . strtolower( $plural[$tax_name] ) 
-				          . '" class="dropdown">'
+                                          . '" class="dropdown">'
 				          . $opciones . '</div>';
+
+      $dropdown = foo_div( "", "dropdown_container", $dropdown );
       
       return $dropdown;
+      
     }
-
-
-
     add_theme_support( 'post-thumbnails' );
 
 

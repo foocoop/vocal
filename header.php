@@ -25,7 +25,7 @@
 <!-- Set the viewport width to device width for mobile -->
 <meta name="viewport" content="width=device-width" />
 
-<title><?php wp_title(); ?></title>
+<title>VOCAL</title>
 
 <?php	wp_enqueue_script("jquery");
 		//~ wp_enqueue_script("jquery-ui-core");
