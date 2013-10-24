@@ -25,7 +25,7 @@ get_header(); ?>
   $imgs = foo_imgs($post->ID,'full','true');
   
   foreach($imgs as $img ) {
-    $items .= foo_div("","sliderItem",foo_vcenter( foo_img($img)) );
+    $items .= foo_div("","sliderItem",foo_vcenter( foo_link( foo_img($img), $img ) ) );
   }
   
   $slider = foo_div("","slider", foo_div("","sliderContent",$items ) );
