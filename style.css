@@ -776,8 +776,12 @@ input[type="button"]{
     height:100%;
     position:absolute;
     background:#fff;
+    text-align:center;
 }
 
+.sliderContent .sliderItem .vcenter_content {
+    text-align: center;
+}
 
 .sliderItem img {
     display:none;
