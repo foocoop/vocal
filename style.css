@@ -282,10 +282,12 @@ width:100%;
 
 .dropdown_container{
     position:relative;
+    width:90%;
     float:left;
 }
 .dropdown_container > div {
     width:100%;
+    
 }
 .dropdown {
     position:absolute;
@@ -295,7 +297,8 @@ width:100%;
     z-index:9999;
     margin-top: 28px;
     top:0;
-    width:38%;
+    width:200px !important;
+    padding:10px;
     font-size:10px;
 /*
 	display: block;
@@ -353,11 +356,17 @@ width:100%;
 }
 
 
+#qtrans,
+#selector_img_size {
+    margin:10px 0;
+}
+
 
 #qtrans,
 #selector_img_size,
-#selector_img_size div,
+/* #selector_img_size div, */
 #boton_fullscreen {
+    /* padding-top:10px; */
 	/* text-align:right; */
 }
 
