@@ -421,7 +421,21 @@
 
        var mL = proyecto.css('paddingLeft');
 
-       proyecto.css('paddingBottom', mL);
+       mL =  parseInt(mL);// / 1.5;
+       
+       menu_grande = $j('#menu.grande');
+       
+       menu_grande.find('div').css({
+         marginRight: mL
+       });
+       
+       proyecto.css({
+         paddingTop: 0,
+         paddingBottom: mL,
+         marginBottom: mL
+       });
+
+       
        console.log(mL);
      });
    }
