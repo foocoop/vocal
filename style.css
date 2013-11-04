@@ -236,14 +236,14 @@ p {
 }
 
 #menu-grande > div {
-    line-height:30px;
-    height:35px;
+    /* line-height:30px; */
+    /* height:35px; */
     
 }
 
 #menu-grande #todos.button,
 #menu-grande #full.button {
-border:none;    
+/* border:none;     */
 width:100%;
 }
 #menu-grande #todos.button {
@@ -251,7 +251,7 @@ width:100%;
 }
 
 #menu-grande #full.button {
-    text-align:right;
+    /* text-align:right; */
 }
 
 #taxonomias {
@@ -358,7 +358,7 @@ width:100%;
 #selector_img_size,
 #selector_img_size div,
 #boton_fullscreen {
-	text-align:right;
+	/* text-align:right; */
 }
 
 #selector_img_size {
@@ -614,13 +614,14 @@ label:hover {
 }
 .fullscreen_hidden img,
 .fullscreen img {
-    position: fixed; 
-    top: 0; 
-    left: 0; 
     
-    /* Preserve aspet ratio */
-    min-width: 100%;
-    min-height: 100%;
+    position: fixed; 
+    display: none;
+    top: 0; 
+    left: 0;
+    max-width: none;
+    max-height: none;
+    
 }
 .fullscreen_hidden {
     visibility:hidden;
@@ -681,7 +682,7 @@ label:hover {
 }
 
 #full_portada {
-    margin-top:50px;
+    /* margin-top:50px; */
     margin-right: 50px;
     /* padding:20px; */
     background-color:white;

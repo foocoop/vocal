@@ -50,75 +50,71 @@ endif;
 
 
 <script type="text/javascript">
- //~ var $j = jQuery.noConflict();
 
- //~ imgs = content.find('a img');
- //~ alert(imgs);
- //~ imgs.remove();
- //~ imgs.parent().remove();
- //~ 
  jQuery(document).ready(function($){
-   $(function() {
+   
+   content = $('.content');
+   content.show();
 
-     content = $('.content');
-     content.show();
-     var win = $(window),
-     fullscreen = $('#fullscreen'),
-     image = fullscreen.find('img'),
-     imageWidth = image.width(),
-     imageHeight = image.height(),
-     imageRatio = imageWidth / imageHeight;
 
-     function resizeImage() {
+   var img = $('.fullscreen img');
 
+   var imgW, imgH;
+   
+ img.attr( "src", img.attr("src") )
+                     .load(function() {
+   imgW = this.width;   // Note: $(this).width() will not
+   imgH = this.height; // work for in memory images.
+ });
+ 
+ 
+   var resizeImage = function() {
+     console.log("rsz");
+
+   var win = $(window);
+       var viewport = {
+         width   : win.width(),
+         height : win.height()
+       };
        
-       var img =  $('.fullscreen img');
-       var doc_width = $j(window).width();
-       var doc_height = $j(window).height();
-       // alert("Step 1: getting document size\n\nWidth: "+doc_width+"px\nHeight = "+doc_height+"px");
-       var image_width = img.width();
-       var image_height = img.height();
-       // alert("Step 2: getting image size\n\nWidth: "+image_width+"px\nHeight = "+image_height+"px");
-       var image_ratio = image_width/image_height;
-       // alert("Step 3: getting image width/height ratio: "+image_ratio);       
-       var new_width = doc_width;
-       var new_height = Math.round(new_width/image_ratio);
-       // alert("Step 4: adapting the image to document width, mantaining the ratio\n\nWidth: "+new_width+"px\nHeight = "+new_height+"px");
-       img.width(new_width);
-       img.height(new_height);
-       if(new_height<doc_height){
-         new_height = doc_height;
-         new_width = Math.round(new_height*image_ratio);
-         // alert("Step 5: the image isn't high enough\n\nAdapting the image to document height, mantaining the ratio\n\nWidth: "+new_width+"px\nHeight = "+new_height+"px");
-         img.width(new_width);
-         img.height(new_height);
-         var width_offset = Math.round((new_width-doc_width)/2);
-         // alert("Step 6: moving the image left by "+width_offset+"px to have it centered");
-         if( img.offset().left + new_width < doc_width){
-           img.width(doc_width);
-           img.height( Math.round(doc_width/image_ratio) );
-         }
+       var ratio     = imgH / imgW ;
+     
+       var imgHeight, imgWidth;
+       
 
-
-         img.css("left","-"+width_offset+"px");
-       }
-
-       img.fadeIn();
-
-
+     if(  viewport.width >= viewport.height ) {
+       imgWidth = viewport.width;
+       imgHeight = Math.floor(viewport.width * ratio);
      }
+     else {
+       imgWidth = viewport.height / ratio; 
+       imgHeight = viewport.height;
+     }
+     
 
-     win.bind({
-       load: function() {
-         resizeImage();
-       },
-       resize: function() {
-         resizeImage();
-       }
-     });
+     img.css({
+     width     : imgWidth,
+     height    : imgHeight,
+     //marginTop : (imgHeight > viewport.height) ? Math.floor((imgHeight - viewport.height) / 2 * -1) : 0
+     }); 
 
-   });
+     
+   }
 
+
+ $(window).resize(function () {
+   resizeImage();
+
+ });
+ resizeImage();
+
+
+ img.fadeIn();
+
+
+
+   
+ 
  });
  
 </script>
