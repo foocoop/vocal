@@ -50,10 +50,10 @@
 <body <?php body_class(); ?>>
 
 	<?php 
-	if( !is_front_page() )
+        /* if( !is_front_page() ) */
 		vocal_main_nav();
-	else
-		vocal_portada_nav();
+        /* else
+	vocal_portada_nav(); */
 	if ( $header !== "blank" ) : ?>
 
 	<?php endif; ?>

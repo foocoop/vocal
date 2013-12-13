@@ -61,90 +61,88 @@ endif;
 
    var imgW, imgH;
    
- img.attr( "src", img.attr("src") )
-                     .load(function() {
-   imgW = this.width;   // Note: $(this).width() will not
-   imgH = this.height; // work for in memory images.
-   resizeImage();
- });
- 
- 
+   img.attr( "src", img.attr("src") )
+                       .load(function() {
+     imgW = this.width;   // Note: $(this).width() will not
+     imgH = this.height; // work for in memory images.
+     resizeImage();
+   });
+   
+   
    var resizeImage = function() {
-   console.log("rsz");
+     console.log("rsz");
 
-   
-   var win = $(window);
-       var viewport = {
-         width   : win.width(),
-         height : win.height()
-       };
+     
+     var win = $(window);
+     var viewport = {
+       width   : win.width(),
+       height : win.height()
+     };
+     
+     var ratio     = imgH / imgW ;
+     
+     var imgHeight, imgWidth;
+     
+     
+     if(  viewport.width >= viewport.height ) {
        
-       var ratio     = imgH / imgW ;
-     
-       var imgHeight, imgWidth;
-   
-   
-   if(  viewport.width >= viewport.height ) {
-     
-     imgWidth = viewport.width;
-     imgHeight = Math.floor(viewport.width * ratio);
-
-
-     if( imgHeight >= viewport.height ) {
-       marginTop = ( imgHeight - viewport.height ) / 2;
-       marginTop *= -1;
-     } else {
-       imgHeight = viewport.height;
-       imgWidth = viewport.height / ratio; 
-       marginTop = 0;
-     }
-     marginLeft = 0; 
-   }
-   else {
-     
-     imgWidth = viewport.height / ratio; 
-     imgHeight = viewport.height;
-     marginTop = 0;
-     marginLeft = 0;
-     
-     if( imgWidth >= viewport.width ) {
-       marginLeft = ( imgWidth - viewport.width ) / 2;
-       marginLeft *= -1;
-     } else {
        imgWidth = viewport.width;
        imgHeight = Math.floor(viewport.width * ratio);
-       marginLeft = 0;
+
+
+       if( imgHeight >= viewport.height ) {
+         marginTop = ( imgHeight - viewport.height ) / 2;
+         marginTop *= -1;
+       } else {
+         imgHeight = viewport.height;
+         imgWidth = viewport.height / ratio; 
+         marginTop = 0;
+       }
+       marginLeft = 0; 
      }
-   }
-   
+     else {
+       
+       imgWidth = viewport.height / ratio; 
+       imgHeight = viewport.height;
+       marginTop = 0;
+       marginLeft = 0;
+       
+       if( imgWidth >= viewport.width ) {
+         marginLeft = ( imgWidth - viewport.width ) / 2;
+         marginLeft *= -1;
+       } else {
+         imgWidth = viewport.width;
+         imgHeight = Math.floor(viewport.width * ratio);
+         marginLeft = 0;
+       }
+     }
+     
 
      img.css({
-     width     : imgWidth,
-     height    : imgHeight,
-     marginTop : marginTop,
-     marginLeft : marginLeft
-     //marginTop : (imgHeight > viewport.height) ? Math.floor((imgHeight - viewport.height) / 2 * -1) : 0
+       width     : imgWidth,
+       height    : imgHeight,
+       marginTop : marginTop,
+       marginLeft : marginLeft
+       //marginTop : (imgHeight > viewport.height) ? Math.floor((imgHeight - viewport.height) / 2 * -1) : 0
      }); 
 
      
    }
 
 
- $(window).resize(function () {
+   $(window).resize(function () {
+     resizeImage();
+
+   });
    resizeImage();
 
- });
- resizeImage();
 
+   img.fadeIn();
 
- img.fadeIn();
-
- resizeImage();
-
+   resizeImage();
 
 
    
- 
  });
  
 </script>

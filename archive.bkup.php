@@ -1,3 +1,5 @@
+<?php get_header(); ?>
+			
 	<div id="content" class="clearfix row">
 		
 					
@@ -59,5 +61,7 @@
 -->
 	
 
- 
+
 	</div> <!-- end #content -->
+
+<?php get_footer(); ?>

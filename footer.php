@@ -8,6 +8,8 @@
  * @subpackage Foundation, for WordPress
  * @since Foundation, for WordPress 4.0
  */
+
+
 ?>
 
 </div> <!-- #content -->
@@ -21,7 +23,10 @@
 </footer>
 <!-- End Footer -->
 
-<?php wp_footer(); ?>
+
+<?php
+echo foo_div("url","hidden",site_url());
+wp_footer(); ?>
 
 </body>
 
@@ -171,7 +176,7 @@
    
    
    $j(".taxonomia .button").click(function(){
-   $j(this).next().toggle();
+     $j(this).next().toggle();
    });
 
  }
@@ -181,8 +186,9 @@
    url = $j("#url").html();
    var ajaxloader = $j("#ajax-loader-div").html();
 
-
-   $j('#proyectos').fadeOut(500);
+   var div_id = "#proyectos";
+   
+   $j(div_id).fadeOut(500);
    var data = {};
    
    data.action = 'filtrar_proyectos';
@@ -190,20 +196,27 @@
    data.disciplinas = disciplinas;
    data.img_size = img_size;
    
-   $j.ajax({  
-	    type: 'POST',
-	    url: url+'/wp-admin/admin-ajax.php',  
-	    data: data, 
-	    success: function(data, textStatus, XMLHttpRequest){  
-				                                $j("#proyectos").html(data);
-				                                setup_grid();
-                                                                $j('#proyectos').fadeIn(1000);
+   $j.ajax(
+     {  
+      type: 'POST',
+      url: url+'/wp-admin/admin-ajax.php',  
+      data: data, 
+      success: function(data, textStatus, XMLHttpRequest)
+      {  
+       $j(div_id).html(data);
+       setup_grid();
+       $j(div_id).fadeIn(1000);
 
-                	                                        },  
-	    error: function(MLHttpRequest, textStatus, errorThrown){  
-				                                    alert(errorThrown);  
-			                                            }  
-	    });  
+       
+       },  
+      error: function(MLHttpRequest, textStatus, errorThrown)
+      {
+         alert(url);
+         alert(errorThrown);  
+       }  
+
+
+      });  
    
    data.action = 'filtrar_proyectos_menu';
    $j.ajax({  
@@ -261,7 +274,7 @@
    return [lo, hi];
  }
  
- function setup_grid() {
+ var setup_grid = function() {
    
    var img_size = $j("#selector_img_size .active").attr('id');
 
@@ -272,7 +285,7 @@
    var new_width = width*0.97;
    var principal = $j('#principal').width( new_width );
    
-   principal.children().width(new_width);
+   principal.children().width( new_width );
    var proyectos = $j('#proyectos .proyecto');
    var large_class;
    clearClasses(proyectos);
@@ -282,9 +295,9 @@
    var segments = [ 896, 1024, 1152, 1280, 1368, 1496 ];
    var sizes = [];
    
-   sizes["L"] = { options : [ 6, 4, 3 ], 	small_cols : 6 }
-   sizes["M"] = { options : [ 4, 3, 2 ],	small_cols : 4 }
-   sizes["S"] = { options : [ 3, 2, 1 ], 	small_cols : 3 }
+   sizes["L"] = { options : [ 12, 6, 4 ], 	small_cols : 6 }
+   sizes["M"] = { options : [ 6, 4, 2 ],	small_cols : 4 }
+   sizes["S"] = { options : [ 4, 3, 2 ], 	small_cols : 3 }
 
    var size = sizes[ img_size ];
    
@@ -325,6 +338,122 @@
    } 
    
 
+
+
+
+   $j('.proyecto a, #menu_proyectos li a').click(function(e){
+
+     var url = $j(this).attr('href');
+     console.log(url);
+     var proyectos = $j('#proyectos').parent();
+     
+     proyectos.load(url,function(){
+       proyectos.fadeIn();
+
+
+
+       var slider = $j('.slider');
+
+       var resize_proyecto = function() {
+
+         var cont = $j('.contenido');
+
+         cont.height( $j(window).height() * 0.9 );
+         $j('.contenido .texto').height( cont.height() - $j('.contenido .links').height() - 100 );
+
+
+         var imgW = $j('.post .imagenes').width();
+         var contH = $j('.contenido .texto').height(); //+ $j('.contenido .links').height() + 30;
+
+
+         /* slider.width( imgW );
+         slider.children().width( imgW ); */
+
+         var img = slider.find('img');
+
+         if( $j(window).width() > 768 ) {
+
+
+           slider.width( imgW );
+           slider.height( contH );
+           slider.children().filter(':not(img)').height( contH );
+
+
+           //     img.hide();
+
+
+         }
+         img.show();
+
+       }
+
+       var resizeTimer;
+
+       $j(window).resize(function() {
+         clearTimeout(resizeTimer);
+         resizeTimer = setTimeout( resize_proyecto, 50);
+       });
+
+
+
+
+
+       var txt = $j('.texto');
+       var as = txt.find('a img').parent();
+       var imgs = txt.find('a img');
+       //~ alert(imgs.length);
+       imgs.remove();
+       as.remove();
+       txt.fadeIn();
+
+
+       var cats = $j('#cats');
+       
+       var iframes = $j('iframe');
+       var sliderItem = $j('.slider .sliderItem').last();
+
+       iframes.each(
+         function(i)
+         {
+           var iframe = $j(this).detach();
+           var item = sliderItem.clone().html( iframe  );
+           $j('.sliderContent').append( item );
+         }
+       );
+
+       resize_proyecto();
+
+       slider.mobilyslider({
+         content: '.sliderContent', // class for slides container
+         children: 'div', // selector for children elements
+         transition: 'horizontal', // transition: horizontal, vertical, fade
+         animationSpeed: 300, // slide transition speed (miliseconds)
+         autoplay: false,
+         autoplaySpeed: 3000, // time between transitions (miliseconds)
+         pauseOnHover: false, // stop animation while hovering
+         bullets: false, // generate pagination (true/false, class: sliderBullets)
+         arrows: true, // generate next and previous arrow (true/false, class: sliderArrows)
+         arrowsHide: false, // show arrows only on hover
+         prev: 'prev', // class name for previous button
+         next: 'next', // class name for next button
+         animationStart: function(){}, // call the function on start transition
+         animationComplete: function(){} // call the function when transition completed
+       });
+       
+
+
+
+       
+     });
+     
+     e.stopPropagation();
+     e.preventDefault();
+     return false;
+
+   });
+
+
+   
    
  };
 
@@ -364,7 +493,7 @@
            }
          });
          if( found ) {
-          chk.find(':checkbox').iCheck('check');
+           chk.find(':checkbox').iCheck('check');
          }
          //iCheck('check');
        });
@@ -428,6 +557,7 @@
        menu_grande.find('div').css({
          marginRight: mL
        });
+       $j('.taxonomia').first().css({marginRight: mL});
        
        proyecto.css({
          paddingTop: 0,
@@ -435,9 +565,47 @@
          marginBottom: mL
        });
 
+
        
        console.log(mL);
      });
+
+
+     $j('#entrar a').click(function(e){
+
+       var url = $j(this).attr('href');
+
+       $j('#texto_portada').parent().load(url,function(){
+         $j('#proyectos').fadeIn();
+         setup_grid();
+       });
+
+       e.stopPropagation();
+       e.preventDefault();
+       return false;
+
+     });
+     
+     $j('#todos').click(function(e){
+
+       var url = $j(this).parent().attr('href');
+
+       $j('#content').load(url,function(){
+         disciplinas = new Array();
+         categorias = new Array();
+         $j('#content').fadeIn();
+         cargar_posts();
+       });
+       
+       e.stopPropagation();
+       e.preventDefault();
+       return false;
+
+     });
+     
+
+
+     
    }
  ); 
  

@@ -1,0 +1,73 @@
+;; -*- mode: emacs-lisp; coding: emacs-mule; -*-
+;; --------------------------------------------------------------------------
+;; Desktop File for Emacs
+;; --------------------------------------------------------------------------
+;; Created Mon Nov  4 03:34:00 2013
+;; Desktop file format version 206
+;; Emacs version 24.3.1
+
+;; Global section:
+(setq desktop-missing-file-warning nil)
+(setq tags-file-name nil)
+(setq tags-table-list nil)
+(setq search-ring '("qtr" "dropdown" "een im"))
+(setq regexp-search-ring nil)
+(setq register-alist nil)
+(setq file-name-history '("/home/furenku/chamba/web/temas/vocal/footer.php" "/home/furenku/chamba/web/temas/vocal/functions.php" "/home/furenku/chamba/web/temas/vocal/header.php" "/home/furenku/chamba/web/temas/vocal/style.css" "/home/furenku/chamba/web/temas/vocal/portada.php"))
+
+;; Buffer section -- buffers listed in same order as in buffer list:
+(desktop-create-buffer 206
+  "/home/furenku/chamba/web/temas/vocal/footer.php"
+  "footer.php"
+  'web-mode
+  '(linum-mode auto-indent-minor-mode)
+  11987
+  '(11956 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . utf-8-unix)))
+
+(desktop-create-buffer 206
+  "/home/furenku/chamba/web/temas/vocal/style.css"
+  "style.css"
+  'css-mode
+  '(linum-mode auto-complete-mode auto-indent-minor-mode)
+  6320
+  '(6272 nil)
+  nil
+  nil
+  '((buffer-file-coding-system . undecided-unix)))
+
+(desktop-create-buffer 206
+  "/home/furenku/chamba/web/temas/vocal/functions.php"
+  "functions.php"
+  'web-mode
+  '(linum-mode auto-indent-minor-mode)
+  14907
+  '(14907 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . utf-8-unix)))
+
+(desktop-create-buffer 206
+  "/home/furenku/chamba/web/temas/vocal/header.php"
+  "header.php"
+  'web-mode
+  '(linum-mode auto-indent-minor-mode)
+  1514
+  '(nil nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix)))
+
+(desktop-create-buffer 206
+  "/home/furenku/chamba/web/temas/vocal/portada.php"
+  "portada.php"
+  'web-mode
+  '(linum-mode auto-complete-mode auto-indent-minor-mode)
+  2330
+  '(2326 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix)))
+

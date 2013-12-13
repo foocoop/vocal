@@ -1,0 +1,19 @@
+Implementación de AJAX:
+---------------------------------
+- home
+
+  > link a página carga el sitio completo incluyendo headers 
+    - STATUS: carga mal el grid... footer.php
+
+- vista proyectos
+  
+  click a un proyecto sustituye todo debajo del menú
+
+
+
+general
+---------------------------------
+
++ aumentar los tamaño más chico de viñetas (no. de columnas)
+- implementar al pie de la letra plantilla de proyecto
+- slider de imágenes custom
