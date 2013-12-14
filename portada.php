@@ -142,6 +142,9 @@ endif;
    resizeImage();
 
 
+   $j('#menu-grande > div').css({opacity:0 });
+   $j('#menu-grande #qtrans').css({opacity:1});
+   $j('#menu-grande #boton_fullscreen').css({opacity:1});
    
  });
  
