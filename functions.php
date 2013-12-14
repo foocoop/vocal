@@ -696,11 +696,11 @@ function foundation_comment( $comment, $args, $depth ) {
       }
 		                 $titulo = get_the_title();
 		                 if($img_size == "L")
-                                 $img = foo_img( foo_thumb( foo_featImg($post->ID), 1024,1024*0.77 ) );
+                                 $img = foo_img( foo_thumb( foo_featImg($post->ID), 600,600*0.77, 40 ) );
 		                 if($img_size == "M")
-			         $img = foo_img( foo_thumb( foo_featImg($post->ID), 600,600*0.77 ) );
+                                 $img = foo_img( foo_thumb( foo_featImg($post->ID), 300,300*0.77, 40 ) );
 		                 if($img_size == "S")
-			         $img = foo_img( foo_thumb( foo_featImg($post->ID), 350,350*0.77 ) );
+                                 $img = foo_img( foo_thumb( foo_featImg($post->ID), 150,150*0.77, 40 ) );
 		                 $link = get_permalink();
 		                 $proyecto = foo_link($titulo,$link);
 		                 $lis .= foo_li( "","", $proyecto );
