@@ -520,8 +520,8 @@ function foundation_comment( $comment, $args, $depth ) {
       
       /* $menu .= foo_div("taxonomias","small-6 large-2 columns", taxonomyDropdown('disciplina') );
       $menu .= foo_div("taxonomias","small-6 large-2 columns", taxonomyDropdown('category') ); */
-      $menu .= foo_div( "selector_img_size", "large-2 small-6 columns", $sel_img );
 
+      $menu .= foo_div( "selector_img_size", "large-2 small-6 columns", $sel_img );
       $qtrans = "";
       
       if (function_exists('qtrans_generateLanguageSelectCode') ) {
@@ -704,8 +704,19 @@ function foundation_comment( $comment, $args, $depth ) {
 		                 $link = get_permalink();
 		                 $proyecto = foo_link($titulo,$link);
 		                 $lis .= foo_li( "","", $proyecto );
-		                 $postStr .= foo_article( array(
-	'class' => 'proyecto columns ' . $img_size . $end,
+
+                                 if( rand(0, 10) < 3 ) {
+        $postStr .= foo_article( array(
+          'class' => 'proyecto columns' . $end,
+          'header'=> '',
+          'content'=>''
+        ) );
+      }
+
+
+                                 
+                                 $postStr .= foo_article( array(
+        'class' => 'proyecto columns ' . $img_size . $end,
 	'header'=> foo_link(foo_vcenter( foo_h( $titulo, 5) ),$link),
 	'content'=> $img
       ) );

@@ -34,7 +34,13 @@
 			
 			array_push( $proyectos , $proyecto  );
 			
-
+                if( rand(0, 10) < 3 ) {
+                  $str .= foo_article( array(
+                    'class' => 'proyecto columns' . $end,
+                    'header'=> '',
+                    'content'=>''
+		  ) );
+                }
 			$str .= foo_article( array(
 				'class' => 'proyecto columns' . $end,
 				'header'=> foo_link(foo_vcenter( foo_h( $titulo, 5) ),$link),
