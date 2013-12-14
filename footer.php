@@ -581,6 +581,8 @@ wp_footer(); ?>
        $j('#texto_portada').parent().load(url,function(){
          $j('#proyectos').fadeIn();
          setup_grid();
+         $j('#menu-grande > div').css({opacity:1 });
+
        });
 
        e.stopPropagation();

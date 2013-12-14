@@ -520,6 +520,7 @@ function foundation_comment( $comment, $args, $depth ) {
       
       /* $menu .= foo_div("taxonomias","small-6 large-2 columns", taxonomyDropdown('disciplina') );
       $menu .= foo_div("taxonomias","small-6 large-2 columns", taxonomyDropdown('category') ); */
+      $menu .= foo_div( "selector_img_size", "large-2 small-6 columns", $sel_img );
 
       $qtrans = "";
       
@@ -531,7 +532,6 @@ function foundation_comment( $comment, $args, $depth ) {
         $menu .= foo_div( "qtrans", "small-6 large-2 columns", $qtrans );
       }
     
-      $menu .= foo_div( "selector_img_size", "large-2 small-6 columns", $sel_img );
       $menu .= foo_div( "boton_fullscreen", "hide-for-small large-2 columns", $full );
 
       echo foo_div("menu-grande","vocal_menu row", $menu );
