@@ -608,7 +608,7 @@ wp_footer(); ?>
      
 
 
-     
+     $j('.lang-en a span').html('EN'); $j('.lang-es a span').html('ES'); 
    }
  ); 
  

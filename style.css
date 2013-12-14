@@ -35,8 +35,8 @@ body { overflow:auto; }
 
 
 #contenedor_principal {
-    width:98%;
-    margin-left:1%;
+    width:96%;
+    margin-left:2%;
 }
 
 a{ color: #000; }
@@ -369,6 +369,18 @@ text-align:left;
 }
 
 
+
+.qtrans_language_chooser {
+    right:0;
+
+}
+
+.qtrans_language_chooser li {
+    /* float:left; */
+    display:inline;
+    font-size:12px;
+    margin-right:10px;
+}
 #qtrans,
 #selector_img_size {
     margin:10px 0;

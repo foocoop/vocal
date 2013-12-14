@@ -521,7 +521,16 @@ function foundation_comment( $comment, $args, $depth ) {
       /* $menu .= foo_div("taxonomias","small-6 large-2 columns", taxonomyDropdown('disciplina') );
       $menu .= foo_div("taxonomias","small-6 large-2 columns", taxonomyDropdown('category') ); */
 
-      $menu .= foo_div( "qtrans", "small-6 large-2 columns", 'ENGLISH ESPAÑOL' ); // qtrans_generateLanguageSelectCode('text') ) .
+      $qtrans = "";
+      
+      if (function_exists('qtrans_generateLanguageSelectCode') ) {
+        ob_start();
+        qtrans_generateLanguageSelectCode('text');
+        $qtrans = ob_get_clean();        
+        
+        $menu .= foo_div( "qtrans", "small-6 large-2 columns", $qtrans );
+      }
+    
       $menu .= foo_div( "selector_img_size", "large-2 small-6 columns", $sel_img );
       $menu .= foo_div( "boton_fullscreen", "hide-for-small large-2 columns", $full );
 
@@ -566,7 +575,7 @@ function foundation_comment( $comment, $args, $depth ) {
 	$todas = "All";// . $plural[ $tax_name ];
       }
       
-      $taxs = get_terms( $tax_name, array( "hide_empty" => 0 ) );
+      $taxs = get_terms( $tax_name, array( "hide_empty" => true, "exclude"=>array(1) ) );
       //~ $result = '<select id="'.$tax_name.'">';
       
       //$opciones .= foo_li( "", "checkbox", '<input type="checkbox" id="'.$todas.'" name="'.$todas.'"><label for="'.$nombre.'">'.$todas.'</label>');
@@ -689,9 +698,9 @@ function foundation_comment( $comment, $args, $depth ) {
 		                 if($img_size == "L")
                                  $img = foo_img( foo_thumb( foo_featImg($post->ID), 1024,1024*0.77 ) );
 		                 if($img_size == "M")
-			         $img = foo_img( foo_thumb( foo_featImg($post->ID), 800,800*0.77 ) );
+			         $img = foo_img( foo_thumb( foo_featImg($post->ID), 600,600*0.77 ) );
 		                 if($img_size == "S")
-			         $img = foo_img( foo_thumb( foo_featImg($post->ID), 550,550*0.77 ) );
+			         $img = foo_img( foo_thumb( foo_featImg($post->ID), 350,350*0.77 ) );
 		                 $link = get_permalink();
 		                 $proyecto = foo_link($titulo,$link);
 		                 $lis .= foo_li( "","", $proyecto );
