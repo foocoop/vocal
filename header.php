@@ -49,6 +49,9 @@
 
 <body <?php body_class(); ?>>
 
+  <div id="contenedor_principal">
+
+    
 	<?php 
         /* if( !is_front_page() ) */
 		vocal_main_nav();

@@ -24,6 +24,9 @@
 <!-- End Footer -->
 
 
+</div><!-- "contenedor_principal" -->
+
+
 <?php
 echo foo_div("url","hidden",site_url());
 wp_footer(); ?>
@@ -206,8 +209,6 @@ wp_footer(); ?>
        $j(div_id).html(data);
        setup_grid();
        $j(div_id).fadeIn(1000);
-
-       
        },  
       error: function(MLHttpRequest, textStatus, errorThrown)
       {
@@ -296,7 +297,7 @@ wp_footer(); ?>
    var sizes = [];
    
    sizes["L"] = { options : [ 12, 6, 4 ], 	small_cols : 6 }
-   sizes["M"] = { options : [ 6, 4, 2 ],	small_cols : 4 }
+   sizes["M"] = { options : [ 6, 4, 3 ],	small_cols : 4 }
    sizes["S"] = { options : [ 4, 3, 2 ], 	small_cols : 3 }
 
    var size = sizes[ img_size ];
@@ -373,7 +374,7 @@ wp_footer(); ?>
 
          if( $j(window).width() > 768 ) {
 
-
+           
            slider.width( imgW );
            slider.height( contH );
            slider.children().filter(':not(img)').height( contH );
@@ -428,8 +429,8 @@ wp_footer(); ?>
          children: 'div', // selector for children elements
          transition: 'horizontal', // transition: horizontal, vertical, fade
          animationSpeed: 300, // slide transition speed (miliseconds)
-         autoplay: false,
-         autoplaySpeed: 3000, // time between transitions (miliseconds)
+         autoplay: true,
+         autoplaySpeed: 10000, // time between transitions (miliseconds)
          pauseOnHover: false, // stop animation while hovering
          bullets: false, // generate pagination (true/false, class: sliderBullets)
          arrows: true, // generate next and previous arrow (true/false, class: sliderArrows)
@@ -440,8 +441,10 @@ wp_footer(); ?>
          animationComplete: function(){} // call the function when transition completed
        });
        
-
-
+       
+       var imgsW = $j('.large-8.imagenes').width();
+       console.log(imgsW);
+       $j('.sliderArrows').css({marginLeft:  imgsW - 100});
 
        
      });
