@@ -42,11 +42,15 @@ if($image) {
   echo foo_div("","fullscreen",$image);
   echo foo_div("","fullscreen_hidden",$image);
 }
-echo foo_div("texto_portada","content portada large-5  small-10 columns", $echo);
+
+$echo = foo_div("texto_portada","content portada large-5  small-10 columns", $echo);
+
+echo $echo; 
 
 endif;
-?>
-<?php get_footer(); ?>
+
+
+get_footer(); ?>
 
 
 <script type="text/javascript">

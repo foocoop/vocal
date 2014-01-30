@@ -21,7 +21,7 @@
 		  while ( have_posts() ) : the_post();
   
   $titulo = get_the_title();
-  $titulo = foo_div("","titulo",foo_h($titulo,3));
+  $titulo = foo_div("","titulo_flechas", foo_div("","titulo",foo_h($titulo,3) ) . foo_div("","flechas") );
   $texto = foo_div("","texto", apply_filters('the_content', $post->post_content ) );
 
   $imgs = foo_imgs($post->ID,'full','true');

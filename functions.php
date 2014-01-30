@@ -500,7 +500,7 @@ function foundation_comment( $comment, $args, $depth ) {
       $cats .= taxonomyDropdown('category');
 
       $sel_img = foo_div("","titulo",'Imágenes:');
-      $sel_imgs = foo_link( '<img id="S" src="'. themeDir() . '/img/imgbtns/s.png"/>', "#");
+      /* $sel_imgs = foo_link( '<img id="S" src="'. themeDir() . '/img/imgbtns/s.png"/>', "#"); */
       $sel_imgs .= foo_link( '<img id="M" class="active" src="'. themeDir() . '/img/imgbtns/m.png"/>', "#");
       $sel_imgs .=  foo_link( '<img id="L" src="'. themeDir() . '/img/imgbtns/l.png"/>', "#");
       $sel_img .= foo_div("","imagenes", $sel_imgs );

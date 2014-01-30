@@ -102,6 +102,11 @@ h1,h2,h3,h4,h5,h6,a:link {font-weight:300;}
 
 
 
+.proyecto h5 {
+    font-family:'alte_haas_groteskregular';
+    font-size:22px;
+}
+
 
 /* -----------------------------------------
    Header
@@ -240,10 +245,11 @@ p {
 
 #menu-grande {
     margin: 25px 0;
-	display:inline-block;
-	text-transform:uppercase;
-	font-size:10px;
-	font-family: 'Lucida Console', Monaco, monospace;
+    display:inline-block;
+    text-transform:uppercase;
+    font-size:10px;
+    font-family: 'Lucida Console', Monaco, monospace;
+    
 }
 
 #menu-grande > div {
@@ -868,20 +874,46 @@ input[type="button"]{
 
 
 .sliderArrows{
-    position:absolute;
+/*    
     margin-left:500px;
-    height:auto;
+    */
+    margin-top:20px;
+    color:#fff;
     width:100px;
-    margin-top:-20px;
+    position:absolute;
+    height:auto;
+    text-align:right;
+    right:0;
 }
 
 .sliderArrows a {
     float:left;
     position:relative;
     margin-right:5px;
-    
+    color:#fff;
 }
 
 .sliderArrows .next {
     right:0;
+}
+
+
+
+.titulo_flechas div {
+    
+}
+
+.titulo_flechas {
+    width:100%;
+}
+
+.titulo_flechas .titulo {
+    width:70%;
+    float:left;
+}
+
+.titulo_flechas .flechas {
+    width:30%;
+    float:left;
+    text-align:right;
 }

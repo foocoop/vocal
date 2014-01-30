@@ -442,10 +442,14 @@ wp_footer(); ?>
        });
        
        
-       var imgsW = $j('.large-8.imagenes').width();
-       console.log(imgsW);
-       $j('.sliderArrows').css({marginLeft:  imgsW - 100});
+       
+       $j('.sliderArrows').detach().appendTo('.titulo_flechas .flechas');
+       $j('.sliderArrows a').text('');
 
+
+       $j('#taxonomias').animate({opacity:0});
+       $j('#selector_img_size').animate({opacity:0});
+       
        
      });
      
@@ -456,7 +460,10 @@ wp_footer(); ?>
    });
 
 
-   
+   /* var imgsW = $j('.columns.imagenes').width();   
+   $j('.sliderArrows').css({marginLeft:  imgsW - 100 }); */
+
+
    
  };
 
@@ -474,6 +481,8 @@ wp_footer(); ?>
    function(){
      
      img_size = $j("#selector_img_size a img.active").attr('id');
+
+
      
      setup_grid();
      setup_checkboxes();
@@ -581,7 +590,15 @@ wp_footer(); ?>
        $j('#texto_portada').parent().load(url,function(){
          $j('#proyectos').fadeIn();
          setup_grid();
+         
+         $j('#menu-grande').css({borderBottom:'2px solid black'});
          $j('#menu-grande > div').css({opacity:1 });
+         var checkboxes = $j(':checkbox');
+         checkboxes.iCheck('check');
+         $j('#taxonomias').animate({opacity:1});
+         $j('#selector_img_size').animate({opacity:1});
+         
+
 
        });
 
@@ -600,6 +617,10 @@ wp_footer(); ?>
          categorias = new Array();
          $j('#content').fadeIn();
          cargar_posts();
+         var checkboxes = $j(':checkbox');
+         checkboxes.iCheck('check');
+         $j('#taxonomias').animate({opacity:1});
+         $j('#selector_img_size').animate({opacity:1});
        });
        
        e.stopPropagation();
@@ -609,7 +630,7 @@ wp_footer(); ?>
      });
      
 
-
+     
      $j('.lang-en a span').html('EN'); $j('.lang-es a span').html('ES'); 
    }
  ); 
