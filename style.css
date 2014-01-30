@@ -462,7 +462,7 @@ text-align:left;
 }
 
 #content .post > div {
-	border-top:2px solid black;
+	/*border-top:2px solid black;*/
 	padding:10px
 }
 
