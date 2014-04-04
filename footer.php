@@ -588,6 +588,7 @@ wp_footer(); ?>
        var url = $j(this).attr('href');
 
        $j('#texto_portada').parent().load(url,function(){
+         $j('#todos').hide();
          $j('#proyectos').fadeIn();
          setup_grid();
          

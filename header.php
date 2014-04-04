@@ -16,14 +16,14 @@
 
 <head>
 <meta charset="<?php bloginfo( 'charset' ); ?>" />
+<!-- Set the viewport width to device width for mobile -->
+<meta name="viewport" content="width=device-width" />
 
 
 
 <link rel="profile" href="http://gmpg.org/xfn/11" />
 <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
 
-<!-- Set the viewport width to device width for mobile -->
-<meta name="viewport" content="width=device-width" />
 
 <title>VOCAL</title>
 
