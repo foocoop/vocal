@@ -102,8 +102,8 @@ h1,h2,h3,h4,h5,h6,a:link {font-weight:300;}
 
 
 
-.proyecto h5 {
-    font-family:'alte_haas_groteskregular';
+.proyecto h5, .titulo h3 {
+    font-family:'alte_haas_groteskregular' !important;
     font-size:22px;
 }
 
@@ -375,7 +375,7 @@ text-align:left;
 }
 .button img {
 	min-width:12px;
-	width:12px;
+	width:15px;
 	height:15px;
 }
 .button {
@@ -400,10 +400,16 @@ text-align:left;
 }
 #qtrans,
 #selector_img_size {
-    margin:10px 0;
+    margin: 8px 0;
     text-align:right;
+    font-size: 12px;
 }
 
+#qtrans {
+    margin: 6px 0;
+
+
+}
 
 #qtrans,
 #selector_img_size,
@@ -508,7 +514,7 @@ text-align:left;
 	
 	overflow:auto;
 	
-	margin-top:30px;
+	margin-top:45px;
 }
 
 .post .links{
@@ -916,4 +922,5 @@ input[type="button"]{
     width:30%;
     float:left;
     text-align:right;
+    margin-top:10px;
 }

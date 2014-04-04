@@ -360,7 +360,7 @@ wp_footer(); ?>
          var cont = $j('.contenido');
 
          cont.height( $j(window).height() * 0.9 );
-         $j('.contenido .texto').height( cont.height() - $j('.contenido .links').height() - 100 );
+         $j('.contenido .texto').height( cont.height() - $j('.contenido .links').height() - 155 );
 
 
          var imgW = $j('.post .imagenes').width();
